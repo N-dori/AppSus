@@ -87,7 +87,8 @@ function getEmptyNotes() {
                 backgroundColor: '#00d'
             },
             info: {
-                txt: 'Fullstack Me Baby!'
+                title: 'Fullstack Me Baby!',
+                body: 'Fullstack Me Baby!'
             }
         },
         {
@@ -97,7 +98,8 @@ function getEmptyNotes() {
             isPinned: false,
             info: {
                 url: 'http://some-img/me',
-                title: 'Bobi and Me'
+                title: 'Bobi and Me',
+                body: 'Bobi and Me'
             },
             style: {
                 backgroundColor: '#00d'
@@ -110,6 +112,7 @@ function getEmptyNotes() {
             isPinned: false,
             info: {
                 title: 'Get my stuff together',
+                body: 'Get my stuff together',
                 todos: [
                     { txt: 'Driving license', doneAt: null },
                     { txt: 'Coding power', doneAt: 187111111 }
