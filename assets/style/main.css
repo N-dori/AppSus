@@ -1,26 +1,28 @@
  /* בס"ד */
 
-/* Setup */
-@import 'setup/vars.css';
-@import 'setup/typography.css';
+ /* Setup */
+ @import 'setup/vars.css';
+ @import 'setup/typography.css';
 
-/* Base */
-@import 'base/base.css';
-@import 'base/helpers.css';
-@import 'base/layout.css';
-@import 'base/forms.css';
+ /* Base */
+ @import 'base/base.css';
+ @import 'base/helpers.css';
+ @import 'base/layout.css';
+ @import 'base/forms.css';
 
-/* General Components */
-@import 'cmps/HomePage.css';
-@import 'cmps/AppHeader.css';
-@import 'cmps/UserMsg.css';
+ /* General Components */
+ @import 'cmps/HomePage.css';
+ @import 'cmps/AppHeader.css';
+ @import 'cmps/UserMsg.css';
 
-/* Note Pages*/
-@import 'apps/note/NoteIndex.css';
+ /* Note Pages*/
+ @import 'apps/note/NoteIndex.css';
 
-/* Note cmps */
-@import 'apps/note/cmps/NoteHeader.css';
+ /* Note cmps */
+ @import 'apps/note/cmps/NoteHeader.css';
 
 
-/* Mail */
-@import 'apps/mail/MailIndex.css';
+ /* Mail */
+ @import 'apps/mail/MailIndex.css';
+ @import 'apps/mail/MailList.css';
+ @import 'apps/mail/MailDetails.css';

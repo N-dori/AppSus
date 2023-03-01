@@ -57,3 +57,11 @@
 .fa.fa-behance::before {
     content: "\f1b4";
 }
+
+.unread:not(p){
+    font-weight: bold;
+}
+
+p.unread{
+    background-color:#f2f6fc;
+}

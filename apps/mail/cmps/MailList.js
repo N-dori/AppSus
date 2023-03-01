@@ -5,9 +5,9 @@ import MailPreview from '../cmps/MailPreview.js'
 export default {
     props: ['mails'],
     template: `
-    <section>
-        <ul>
-            <li v-for="mail in mails">
+    <section class="mail-list-container">
+        <ul class="mail-list">
+            <li class="mail-preview" v-for="mail in mails">
                 <MailPreview :mail="mail"/>
             </li>
         </ul>

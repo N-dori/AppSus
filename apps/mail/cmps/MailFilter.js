@@ -6,7 +6,6 @@ import { mailService } from '../services/mail.service.js'
 export default {
     props: [],
     template: `
-    <h1>hi from filter</h1>
     <form>
         <input type="text" placeholder="Search"> |
         <label>Read</label>

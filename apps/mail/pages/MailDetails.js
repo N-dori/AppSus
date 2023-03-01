@@ -7,12 +7,15 @@ export default {
     props: [],
     template: `
         <pre v-if="mail">{{ mail }}</pre>
-        <section v-if="mail">
-            <button @click="goBack">Back to inbox</button>
+        <section class="mail-details-container">
+              <button class ="go-back" @click="goBack">Back to inbox</button>
+        <section class="mail-details" v-if="mail">
             <p :class="isRead">{{ mail.subject }}</p>
-            <p :class="isRead">{{ mail.from }}</p>
+            <p :class="isRead">From: {{ mail.from }}</p>
             <p :class="isRead">{{ mail.body }}</p>
+        </section> 
         </section>
+     
     `,
     data() {
         return {

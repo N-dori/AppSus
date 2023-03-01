@@ -10,6 +10,7 @@ export const mailService = {
     getMail,
     getCriteria,
     createDemoCriteria,
+    send,
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -53,14 +54,16 @@ const criteria = {
 
 function getMails() {
     // return email
-    return utilService.loadFromStorage(MAILS_KEY)
+    return storageService.query(MAILS_KEY)
 }
 
 function createDemoMails() {
+    if (utilService.loadFromStorage(MAILS_KEY)) return
     utilService.saveToStorage(MAILS_KEY, emails)
 }
 
 function createDemoCriteria() {
+    if (utilService.loadFromStorage(CRITERIA_KEY)) return
     utilService.saveToStorage(CRITERIA_KEY, criteria)
 }
 
@@ -69,5 +72,20 @@ function getMail(mailId) {
 }
 
 function getCriteria() {
-    return utilService.loadFromStorage(CRITERIA_KEY)
+    return storageService.query(CRITERIA_KEY)
+}
+
+function send(to, subject, body) {
+    let newMail = {
+        id: utilService.makeId(),
+        subject,
+        body,
+        isRead: false,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'user@appsus.com',
+        to,
+    }
+
+    return storageService.post(MAILS_KEY, newMail)
 }

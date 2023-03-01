@@ -1,0 +1,25 @@
+/* בס"ד */
+
+.mail-details-container {
+    display: grid;
+    grid-template-columns: 1em 1fr 1em;
+    
+}
+
+.mail-details-container>*{
+    grid-column: 2/3;
+}
+
+.mail-details{
+    outline: 1px solid black;
+   
+}
+
+.mail-details>*:not(:last-child){
+    border-bottom: 1px solid lightgray;
+}
+
+.go-back{
+    margin-bottom: 1em;
+    width: fit-content;
+}
