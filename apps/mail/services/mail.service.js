@@ -11,6 +11,7 @@ export const mailService = {
 }
 
 const MAILS_KEY = 'mailsDB'
+const CRITERIA_KEY = 'criteriaDB'
 
 const emails = [
     {
@@ -27,7 +28,7 @@ const emails = [
         id: 'e102',
         subject: '123',
         body: 'Wגדבדגבדגבs',
-        isRead: false,
+        isRead: true,
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
@@ -60,3 +61,7 @@ function createDemoMails() {
 function getMail(mailId) {
     return storageService.get(MAILS_KEY, mailId)
 }
+
+// function getCriteria() {
+//     return utilService.loadFromStorage(MAILS_KEY)
+// }

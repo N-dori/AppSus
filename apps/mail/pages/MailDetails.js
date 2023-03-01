@@ -6,8 +6,13 @@ import { mailService } from "../services/mail.service.js"
 export default {
     props: [],
     template: `
-    <h1>hi from details</h1>
-    <pre v-if="mail">{{ mail }}</pre>
+        <pre v-if="mail">{{ mail }}</pre>
+        <section v-if="mail">
+            <button @click="goBack">Back to inbox</button>
+            <p :class="isRead">{{ mail.subject }}</p>
+            <p :class="isRead">{{ mail.from }}</p>
+            <p :class="isRead">{{ mail.body }}</p>
+        </section>
     `,
     data() {
         return {
@@ -16,14 +21,19 @@ export default {
         }
     },
     methods: {
-
+        goBack() {
+            this.$router.push('/mail')
+        }
     },
     computed: {
+        isRead() {
+            return this.mail.isRead ? '' : 'unread'
+        }
     },
     created() {
-
-        // mailService.getMail(this.mailId)
-        //     .then(res => this.mail = res)
+        this.mailId = this.$route.params.mailId
+        mailService.getMail(this.mailId)
+            .then(res => this.mail = res)
     },
     components: {
     },

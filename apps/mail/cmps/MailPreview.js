@@ -5,8 +5,8 @@ import { eventBus } from "../../../services/event-bus.service.js"
 export default {
     props: ['mail'],
     template: `
-    <p v-if="mail" @click="showDetails">
-        <span>{{ mail.from }}</span> &emsp; 
+    <p v-if="mail" @click="showDetails" :class="isRead">
+        <span :class="isRead">{{ mail.from }}</span> &emsp; 
         <span>{{ mail.subject }}</span> - 
         <span>{{ mail.body }}</span>
     </p>
@@ -21,6 +21,9 @@ export default {
         }
     },
     computed: {
+        isRead() {
+            return this.mail.isRead ? '' : 'unread'
+        }
     },
     created() {
     },
