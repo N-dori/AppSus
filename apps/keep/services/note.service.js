@@ -31,7 +31,6 @@ function get(noteId) {
         .then(note => {
             return setNextPrevBookId(note)
         })
-
 }
 
 function remove(noteId) {
