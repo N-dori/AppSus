@@ -8,6 +8,8 @@ export const mailService = {
     getMails,
     createDemoMails,
     getMail,
+    getCriteria,
+    createDemoCriteria,
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -58,10 +60,14 @@ function createDemoMails() {
     utilService.saveToStorage(MAILS_KEY, emails)
 }
 
+function createDemoCriteria() {
+    utilService.saveToStorage(CRITERIA_KEY, criteria)
+}
+
 function getMail(mailId) {
     return storageService.get(MAILS_KEY, mailId)
 }
 
-// function getCriteria() {
-//     return utilService.loadFromStorage(MAILS_KEY)
-// }
+function getCriteria() {
+    return utilService.loadFromStorage(CRITERIA_KEY)
+}

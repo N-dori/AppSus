@@ -11,13 +11,12 @@ export default {
         <MailFilter />
 
         <section>
-            <MailList v-if="mails"  :mails="mails"/>
+            <MailList v-if="mails" :mails="mails"/>
         </section>
     `,
     data() {
         return {
             mails: null,
-            criteria: null,
         }
     },
     methods: {
@@ -25,9 +24,6 @@ export default {
     computed: {
     },
     created() {
-        mailService.createDemoMails()
-        this.criteria = mailService.getCriteria()
-        
         mailService.createDemoMails()
         this.mails = mailService.getMails()
     },

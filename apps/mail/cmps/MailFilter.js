@@ -1,5 +1,8 @@
 // בס"ד
 
+import { mailService } from '../services/mail.service.js'
+
+
 export default {
     props: [],
     template: `
@@ -14,6 +17,7 @@ export default {
     `,
     data() {
         return {
+            criteria: null,
         }
     },
     methods: {
@@ -21,6 +25,8 @@ export default {
     computed: {
     },
     created() {
+        mailService.createDemoCriteria()
+        this.criteria = mailService.getCriteria()
     },
     components: {
     },
