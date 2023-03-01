@@ -1,7 +1,10 @@
 // בס"ד
 
 export const utilService = {
-    makeId
+    makeId,
+    loadFromStorage,
+    saveToStorage,
+    getRandomIntInclusive,
 }
 
 
