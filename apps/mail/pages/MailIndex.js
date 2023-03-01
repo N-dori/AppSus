@@ -1,6 +1,6 @@
 // בס"ד
 
-import {storageService} from ''
+import { mailService } from '../services/mail.service.js'
 
 import MailList from '../cmps/MailList.js'
 
@@ -22,7 +22,8 @@ export default {
     computed: {
     },
     created() {
-
+        mailService.createDemoMails()
+        this.mails = mailService.getMails()
     },
     components: {
         MailList,

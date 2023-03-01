@@ -1,8 +1,14 @@
 // בס"ד
 
-export const mailService = {
+// import { storageService } from '../../../services/async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
 
+export const mailService = {
+    getMails,
+    createDemoMails,
 }
+
+const MAILS_KEY = 'mailsDB'
 
 const email = {
     id: 'e101',
@@ -26,4 +32,13 @@ const criteria = {
     isRead: true, // (optional property, if missing: show all)
     isStared: true, // (optional property, if missing: show all)
     lables: ['important', 'romantic'] // has any of the labels
+}
+
+function getMails() {
+    // return email
+    return utilService.loadFromStorage(MAILS_KEY)
+}
+
+function createDemoMails() {
+    utilService.saveToStorage(MAILS_KEY, email)
 }
