@@ -20,6 +20,7 @@
 
 /* Note cmps */
 @import 'apps/note/cmps/NoteHeader.css';
+@import 'apps/note/cmps/NotePreview.css';
 
 
 /* Mail */
