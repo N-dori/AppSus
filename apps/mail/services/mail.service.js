@@ -1,25 +1,39 @@
 // בס"ד
 
 // import { storageService } from '../../../services/async-storage.service.js'
+import { storageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 export const mailService = {
     getMails,
     createDemoMails,
+    getMail,
 }
 
 const MAILS_KEY = 'mailsDB'
 
-const email = {
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'momo@momo.com',
-    to: 'user@appsus.com'
-}
+const emails = [
+    {
+        id: 'e101',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: 'momo@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: 'e102',
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: false,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+]
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -40,5 +54,9 @@ function getMails() {
 }
 
 function createDemoMails() {
-    utilService.saveToStorage(MAILS_KEY, email)
+    utilService.saveToStorage(MAILS_KEY, emails)
+}
+
+function getMail(mailId) {
+    return storageService.get(MAILS_KEY, mailId)
 }

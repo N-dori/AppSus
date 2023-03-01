@@ -9,7 +9,7 @@ export default {
     template: `
     <section>
     <h1>hi from index</h1>
-        <MailList v-if="mails" />
+        <MailList v-if="mails" :mails="mails"/>
     </section>
     `,
     data() {
