@@ -2,14 +2,17 @@
 import NotePreview from'../cmps/NotePreview.js'
 import { noteService } from '../services/note.service.js'
 import NoteHeader from'../cmps/NoteHeader.js'
- //import noteService from ''
+
 
 export default {
     template:`
         <NoteHeader/>
     <section class="txt-editor">
+        <form @submit="">
        <input type="text" v-model="txt" placeholder="search">
-       <h1>{{note}}</h1>
+       <i class="fa-regular fa-envelope"></i> 
+    </form>
+       <pre>{{notes}}</pre>
    </section>
 
     <NotePreview/>
@@ -17,7 +20,7 @@ export default {
   data() {
         return {
             txt: "",
-            note:[],
+            notes:[],
             filterBy: {},
         }
     },
