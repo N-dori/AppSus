@@ -1,12 +1,13 @@
 
 // בס"ד
-
+import NoteTxt from "./NoteTxt.js"
 export default{
     props: ['note'],
     template:`
-    <p>{{ note.info.title }}</p>
-    <p>{{ note.info.body }}</p>
-
+   <div >  <Component 
+            :is="note.type"  
+            :info="note.info" />
+                </div>
 
     `,
     created(){
@@ -17,5 +18,8 @@ export default{
     },computed:{
 
     },
+    components:{
+        NoteTxt,
+    }
 
 }
