@@ -62,6 +62,6 @@
     font-weight: bold;
 }
 
-p.unread{
+.read{
     background-color:#f2f6fc;
 }

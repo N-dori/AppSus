@@ -7,9 +7,9 @@ export default {
     props: [],
     template: `
     <form>
-        <input type="text" placeholder="Search"> |
+        <input @input"updateTxt" type="text" placeholder="Search"> |
         <label>Read</label>
-        <input type="checkbox">
+        <input @click ="" type="checkbox">
         <label>Unread</label>
         <input type="checkbox">
     </form>
@@ -20,6 +20,9 @@ export default {
         }
     },
     methods: {
+        updateTxt(){
+            
+        }
     },
     computed: {
     },
