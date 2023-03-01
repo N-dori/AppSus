@@ -7,10 +7,18 @@ import NoteHeader from'../cmps/NoteHeader.js'
 export default {
     template:`
         <NoteHeader/>
-    <section class="txt-editor">
+    <div @click="isShown=false" class="screen"></div>    
+    <section  class="txt-editor">
         <form @submit="">
-       <input type="text" v-model="txt" placeholder="search">
-       <i class="fa-regular fa-envelope"></i> 
+       <input @click="isShown=!isShown" class="txt-editor-title" type="text" v-model="txt" placeholder="Take A note">
+      <div v-if="isShown" class="txt-editor-editor">
+       <input type="text" v-model="txt" placeholder="Take A note">
+       
+       <i class="fa-regular fa-image"></i>
+       <i class="fa-regular fa-palette"></i>
+       <i class="fa-solid fa-list"></i>
+       <i class="fa-brands fa-youtube"></i>
+       </div>
     </form>
        <pre>{{notes}}</pre>
    </section>
@@ -22,6 +30,7 @@ export default {
             txt: "",
             notes:[],
             filterBy: {},
+            isShown:false,
         }
     },
     
