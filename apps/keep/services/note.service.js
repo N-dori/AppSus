@@ -13,6 +13,7 @@ export const noteService = {
     remove,
     save,
     getEmptyNotes,
+    getEmptyNote,
 
 }
 
@@ -39,9 +40,10 @@ function remove(noteId) {
 
 function save(note) {
     if (note.id) {
-        return storageService.put(note_KEY, book)
+        note.id=utilService.makeId()
+        return storageService.put(note_KEY, note)
     } else {
-        return storageService.post(note_KEY, book)
+        return storageService.post(note_KEY, note)
     }
 
 }
@@ -56,6 +58,22 @@ utilService.saveToStorage(note_KEY, notes)
     return notes
     }
   
+}
+function getEmptyNote(){
+    const EmptyNote={
+        id: '',
+            createdAt: Date.now(),
+            type: 'NoteTxt',
+            isPinned: true,
+            style: {
+                backgroundColor: '#00d'
+            },
+            info: {
+                title: '',
+                body:''
+            }
+    }
+    return EmptyNote
 }
 
 function getEmptyNotes() {

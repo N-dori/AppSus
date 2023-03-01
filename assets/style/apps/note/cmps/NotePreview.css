@@ -1,0 +1,15 @@
+.note-card{
+    list-style-type: none;
+    background-color: lightgray;
+    margin-bottom: 1em; 
+    max-width: 350px;
+    line-height: 1.25rem;
+    break-inside: avoid;
+}
+.note-card button{
+   
+}
+.cards-container{
+min-height: 40vh;
+    columns: 3;
+}

@@ -18,9 +18,9 @@
  /* Note Pages*/
  @import 'apps/note/NoteIndex.css';
 
- /* Note cmps */
- @import 'apps/note/cmps/NoteHeader.css';
-
+/* Note cmps */
+@import 'apps/note/cmps/NoteHeader.css';
+@import 'apps/note/cmps/NotePreview.css';
 
  /* Mail */
  @import 'apps/mail/MailIndex.css';
