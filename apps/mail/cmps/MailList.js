@@ -3,14 +3,12 @@
 import MailPreview from '../cmps/MailPreview.js'
 
 export default {
-    props: [],
+    props: ['mails'],
     template: `
     <section>
-    <h1>hi from list</h1>
-
         <ul>
-            <li>
-                <MailPreview />
+            <li v-for="mail in mails">
+                <MailPreview :mail="mail"/>
             </li>
         </ul>
     </section>
