@@ -1,7 +1,26 @@
 // בס"ד
+import NotePreview from'../cmps/NotePreview.js'
+import NoteHeader from'../cmps/NoteHeader.js'
+ //import noteService from ''
 
-export default{
+export default {
     template:`
-    <h1>hi</h1>
+   
+    <NoteHeader/>
+    <NotePreview/>
     `,
+    created(){
+
+    },
+    methods:{
+
+    },computed:{
+
+    },
+    components: {
+   //     noteService,
+        NotePreview,
+        NoteHeader,
+    }
+
 }

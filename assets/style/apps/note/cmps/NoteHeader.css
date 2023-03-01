@@ -1,0 +1,37 @@
+.note-main-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.note-main-header input {
+    grid-column: 2;
+    margin-inline-start: 10em;
+    padding: 11px 0;
+    background: transparent;
+    height: 46px;
+    width: 100%;
+    border-radius: 1em;
+}
+.note-main-header button {
+    
+    width: 3em;
+    height: 3em;
+    margin: 0.5em;
+    border-radius: 100px;
+    font-size: 1em;
+}
+.note-main-header img {
+    margin-inline-start: 1em;
+    max-height: 3em;
+    margin: 0.5em;
+
+}
+.note-main-header h1 {
+  
+    margin: 0.5em;
+    font-size: 1.375em;
+}
+.note-main-header .logo-button-container{
+    grid-column: 1;
+
+    display: flex;
+}
