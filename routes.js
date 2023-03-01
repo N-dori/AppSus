@@ -1,3 +1,5 @@
+// בס"ד
+
 import HomePage from './views/HomePage.js'
 import AboutUs from './views/AboutUs.js'
 

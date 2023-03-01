@@ -1,3 +1,5 @@
+// בס"ד
+
 'use strict'
 
 function createEventEmitter(defaultHandler = null){

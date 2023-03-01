@@ -1,3 +1,5 @@
+// בס"ד
+
 export default {
 	template: `
         <footer class="app-footer">

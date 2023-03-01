@@ -1,3 +1,5 @@
+// בס"ד
+
 const { createApp } = Vue
 
 import { router } from './routes.js'
@@ -25,3 +27,4 @@ const options = {
 const app = createApp(options)
 app.use(router)
 app.mount('#app')
+console.log('hi')
