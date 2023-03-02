@@ -53,7 +53,7 @@ export default {
         //     this.mails = mailService.filterByTxt()
         // },
         reboot() {
-            mailService.getMails
+            mailService.getMails()
                 .then(res => this.mails = res)
 
         }
