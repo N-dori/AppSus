@@ -3,6 +3,7 @@ import NotePreview from '../cmps/NotePreview.js'
 import { noteService } from '../services/note.service.js'
 import NoteHeader from '../cmps/NoteHeader.js'
 import NoteList from '../cmps/NoteList.js'
+import { svgService } from '../../../services/svg.service.js'
 
 
 export default {
@@ -18,19 +19,17 @@ export default {
         <input type="text" v-model="body" @input="setTxt"  placeholder="Take A note">
      </div>
         <div  class="txt-editor-buttons">
-       <div class="icons">
-       <i @click="setType('img')" title="Image" class="fa-regular fa-image"></i>
-       <i @click="setType('Video')"title="Video" class="fa-brands fa-youtube"></i>
-       <i @click="setColor('color')" class="fa-solid fa-palette"></i>
-       <i @click="setType('Todo')" title="Todo" class="fa-solid fa-check"></i>
-</div>
-       <button type="submit">+</button>
+     
+       <div class="ico" v-html="setSvg('colorPickerNone')"></div>
+
+       <button type="submit" >+</button>
     </div>
     </form>
 </section>
 
 </main>
-   <NoteList :notes="notes"/>
+   <NoteList :notes="notes"
+   @removeNote="remove"/>
  
     `,
     data() {
@@ -50,6 +49,18 @@ export default {
 
     },
     methods: {
+        remove(noteid){
+            console.log('removeeeee',noteid);
+            noteService.remove(noteid)
+            .then(() => {
+                const idx = this.notes.findIndex(note => note.id === noteid)
+                this.notes.splice(idx, 1)
+                console.log(' this.notes', this.notes);
+                
+            })
+     
+            
+        },
         setTxt() {
             this.note.info.title = this.title
             this.note.info.body = this.body
@@ -66,6 +77,10 @@ export default {
             console.log('tyoe',type);
         },setColor(color){
             
+        },setSvg(type){
+          return svgService.getNoteSvg(type)
+   
+           
         }
 
     }, computed: {

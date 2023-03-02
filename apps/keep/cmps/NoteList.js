@@ -9,7 +9,7 @@ export default {
         <ul>
          <li class="note-card" v-for="note in notes" :key="note.id">
 	      <NotePreview :note="note"/>
-            <button>Close</button>
+            <button @click="remove(note.id)">Close</button>
         </li>
             </ul>
 		
@@ -23,6 +23,9 @@ export default {
         }
     },
     methods: {
+        remove(noteId){
+            this.$emit('removeNote',noteId)
+        }
     },
     computed: {
     },
@@ -32,5 +35,5 @@ export default {
         NotePreview,
        
     },
-    emits: [],
+    emits: ['removeNote'],
 }
