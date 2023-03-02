@@ -70,7 +70,7 @@ function getEmptyNote(){
             type: 'NoteTxt',
             isPinned: false,
             style: {
-                backgroundColor: '#000d'
+                backgroundColor: 'red'
             },
             info: {
                 title: '',
@@ -114,19 +114,20 @@ function getEmptyNotes() {
             }
         },
         {
-            id: 'n103',
+            id: 'n102',
             createdAt: 1112222,
             type: 'NoteTxt',
             isPinned: false,
             info: {
-                title: 'Get my stuff together',
-                body: 'Get my stuff together',
-                todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
-                ]
+                url: 'http://some-img/me',
+                title: 'Bobi and Me',
+                body: 'Bobi and Me'
+            },
+            style: {
+                backgroundColor: '#00d'
             }
-        }
+        },
+        
     ]
     return notes
 }

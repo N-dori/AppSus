@@ -35,6 +35,7 @@
  .mail-grid {
      display: grid;
      grid-template-columns: 256px minmax(500px, 1fr) 1em;
+     min-height: 100%
 
  }
 

@@ -6,7 +6,7 @@ export default {
     <h1>Keep</h1>
 </div> 
    
-    <input type="text" v-model="txt" placeholder="search">
+    <input @input="onSearch" type="text" v-model="txt" placeholder="search">
    </section>`,
     data(){
         return {
@@ -18,9 +18,12 @@ export default {
 
     },
     methods:{
+        onSearch(){
+                this.$emit('onSearch',this.txt)
+        }
 
     },computed:{
 
-    },
+    },emits:['onSearch']
 
 }

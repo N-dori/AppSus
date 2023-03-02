@@ -1,16 +1,18 @@
 import NotePreview from "./NotePreview.js"
 import { svgService } from "../../../services/svg.service.js"
 export default {
-    props: ['notes','color'],
+    props: ['notes'],
     template: `
     <section>
   
 		<article class="cards-container">
         <ul>
             <li  class="note-card" v-for="note in notes" :key="note.id">
+       
              <div @click="changePin(note)" calss="svg-pin" v-html="setSvg('pin')"></div>
-	  <NotePreview :color="this.color" :note="note"  />
-            <button @click="remove(note.id)">Close</button>
+	  <NotePreview :note="note"  />
+      
+
         </li>
             </ul>
 		
@@ -20,15 +22,12 @@ export default {
     `,
     data() {
         return {
+     
             isSown:true,
         }
     },
     methods: {
-        remove(noteId){
-   
-            this.$emit('removeNote',noteId)
-
-        }, changePin(note){
+        changePin(note){
          note.isPinned= !note.isPinned
         this.$emit('pinChanged')
          
@@ -44,5 +43,5 @@ export default {
         NotePreview,
        
     },
-    emits: ['removeNote','pinChanged'],
+    emits: ['pinChanged'],
 }
