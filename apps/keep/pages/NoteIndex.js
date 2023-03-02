@@ -9,7 +9,7 @@ import ColorPicker from '../cmps/ColorPicker.js'
 
 export default {
     template: `
-        <NoteHeader/>
+        <NoteHeader @onSearch="filter"/>
     <div></div>
     <main class="txt-edit-layout">
     <section :style="{backgroundColor:this.color}" class="txt-editor">
@@ -21,21 +21,24 @@ export default {
         <input type="text" v-model="body" @input="setTxt"  placeholder="Take A note">
      </div>
         <div  class="txt-editor-buttons">
-     
+        <div class="svg-icons"> 
        <div v-html="setSvg('colorPickerNone')"></div>
-
-       <button type="submit" >+</button>
+       <div @click="isShown=!isShown"> <div v-html="setSvg('palette')"></div></div>
+    <div  v-html="setSvg('img')"></div>
+       <div v-html="setSvg('youtube')"></div>
+    </div>   
+       <button type="submit" >Close</button>
     </div>
     </form>
-
-    <ColorPicker @colorChanged="changeColor" />
+    <ColorPicker v-if="isShown" @colorChanged="changeColor" />
 </section>
 </main>
-   <NoteList :color="color" @pinChanged="updateAllNotes" v-if="PinedNotes" :notes="PinedNotes"
-   @removeNote="remove"/>
+   <NoteList  @pinChanged="updateAllNotes" v-if="PinedNotes" 
+   :notes="PinedNotes"
+  />
 
-   <NoteList :color="color"  @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
-   @removeNote="remove"/>
+   <NoteList  @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
+  />
 
  
     `,
@@ -49,39 +52,36 @@ export default {
             unPinedNotes: null,
             filterBy: {},
             isShown: false,
-            color:'#fefef'
+            color: ''
         }
     },
 
     created() {
+        eventBusService.on('removeNote',(noteId)=>{
+                noteService.remove(noteId)
+            const note = this.notes.find(note => note.id === noteId)
+            if (note.isPinned) {
+                const idx = this.PinedNotes.findIndex(note => note.id === noteId)
+                this.PinedNotes.splice(idx, 1)
+            } else {
+                const idx = this.unPinedNotes.findIndex(note => note.id === noteId)
+                this.unPinedNotes.splice(idx, 1)
+            }
+        })
         this.reboot()
     },
     methods: {
-        remove(noteid) {
-            console.log('removeeeee', noteid);
-            noteService.remove(noteid)
-                const note= this.notes.find(note => note.id === noteid)
-                        if (note.isPinned) {
-                            const idx = this.PinedNotes.findIndex(note => note.id === noteid)
-                            this.PinedNotes.splice(idx, 1)
-                        } else {
-                            const idx = this.unPinedNotes.findIndex(note => note.id === noteid)
-                            this.unPinedNotes.splice(idx, 1)
-                        }
-
-                    
-
-                
-        },
+     
         changeColor(color) {
-            this.color=color
-            this.note.style.backgroundColor=color
+            this.color = color
+            this.note.style.backgroundColor = color
         },
         setTxt() {
             this.note.info.title = this.title
             this.note.info.body = this.body
         },
         creatNewNote() {
+            
             const emptyNote = noteService.getEmptyNote()
             this.note = emptyNote
 
@@ -121,7 +121,15 @@ export default {
                     this.PinedNotes = this.notes.filter(note => note.isPinned === true)
                     this.unPinedNotes = this.notes.filter(note => note.isPinned === false)
                 })
-        }
+        },filter(txt){
+            const txtRegex = new RegExp(txt, 'i')
+             const filterdNotes= this.notes.filter(item=>     
+                    txtRegex.test(item.info.title ))
+
+                this.PinedNotes = filterdNotes.filter(note => note.isPinned === true)
+                 this.unPinedNotes = filterdNotes.filter(note => note.isPinned === false)
+                }
+                    
 
     }, computed: {
 
@@ -133,6 +141,7 @@ export default {
         NoteList,
         ColorPicker,
 
-    }
+    },
+    emits:['removeNote']
 
 }
