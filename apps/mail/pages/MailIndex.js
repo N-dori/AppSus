@@ -10,25 +10,24 @@ import MailCompose from '../cmps/MailCompose.js'
 export default {
     props: [],
     template: `
-        <MailFilter @filter="filterByTxt"/>
+    <section class="mail-grid">
+    <MailFilter @filter="filterBy"/>
 
-        <button @click="toggleCompose"><span>{{ ComposeMsg }}</span>Compose</button>
+<button class="compose-btn" @click="toggleCompose"><span>{{ ComposeMsg }}</span>Compose</button>
 
-        <section>
-            <MailList v-if="mails" :mails="mails"/>
-        </section>
 
-        <MailCompose v-if="isCompose"  @mail-sent="updateMails"/>
+    <MailList @mails-update="reboot" v-if="mails" :mails="mails"/>
+
+
+<MailCompose v-if="isCompose"  @mail-sent="updateMails"/>
+    </section>
+       
     `,
     data() {
         return {
             mails: null,
             isCompose: false,
             ComposeMsg: '',
-            filterBy: {
-                'txt': undefined,
-                'isRead': undefined,
-            },
         }
     },
     methods: {
@@ -42,15 +41,22 @@ export default {
             mailService.getMail(res.id)
                 .then(res => this.mails.push(res))
         },
-        // filterBy(val) {
-        //     switch (val) {
-        //         case 'txt': filterByTxt()
-        //             break
-        //     }
-        // },
-        filterByTxt() {
-            this.mails = mailService.filterByTxt()
+        filterBy() {
+            // switch (val) {
+            //     case 'txt':
+
+            this.mails = mailService.filterBy()
+            //         break
+            // }
         },
+        // filterByTxt() {
+        //     this.mails = mailService.filterByTxt()
+        // },
+        reboot() {
+            mailService.getMails
+                .then(res => this.mails = res)
+
+        }
     },
     computed: {
     },

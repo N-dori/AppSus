@@ -7,7 +7,8 @@ import { mailService } from '../services/mail.service.js'
 export default {
     props: [],
     template: `
-        <input v-if="criteria" v-model="criteria.txt" @input="search" type="text" placeholder="Search"> |
+    <section class="filter">
+<input v-if="criteria" v-model="criteria.txt" @input="search" type="text" placeholder="Search"> |
         <select @change ="isRead($event.target.value)">
             <option value="all">
                 All
@@ -19,6 +20,8 @@ export default {
                 Unread
             </option>
         </select>
+    </section>
+       
     `,
     data() {
         return {
@@ -28,7 +31,7 @@ export default {
     methods: {
         search() {
             mailService.saveCriteria(this.criteria)
-            this.$emit('filter', 'txt')
+            this.$emit('filter')
         },
         isRead(val) {
             switch (val) {

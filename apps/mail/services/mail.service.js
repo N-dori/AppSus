@@ -11,9 +11,10 @@ export const mailService = {
     getCriteria,
     createDemoCriteria,
     send,
-    filterByTxt,
+    filterBy,
     saveCriteria,
     updateMail,
+    deleteMail,
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -32,6 +33,156 @@ const emails = [
     },
     {
         id: 'e102',
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com'
+    },
+    {
+        id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
@@ -102,7 +253,7 @@ function saveCriteria(criteria) {
     utilService.saveToStorage(CRITERIA_KEY, criteria)
 }
 
-function filterByTxt() {
+function filterBy() {
     let mails = utilService.loadFromStorage(MAILS_KEY)
     let criteria = utilService.loadFromStorage(CRITERIA_KEY)
 
@@ -111,8 +262,12 @@ function filterByTxt() {
     const txtRegex = new RegExp(criteria.txt, 'i')
 
     let filteredMails = mails.filter(item =>
-        (txtRegex.test(item.subject) || txtRegex.test(item.body)) && item.isRead === criteria.isRead
+        (txtRegex.test(item.from) || txtRegex.test(item.subject) || txtRegex.test(item.body)) && (item.isRead === criteria.isRead || criteria.isRead === undefined)
     )
 
     return filteredMails
+}
+
+function deleteMail(mail) {
+    storageService.remove(MAILS_KEY, mail.id)
 }
