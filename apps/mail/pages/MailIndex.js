@@ -10,7 +10,7 @@ import MailCompose from '../cmps/MailCompose.js'
 export default {
     props: [],
     template: `
-        <MailFilter />
+        <MailFilter @filter="filterBy"/>
 
         <button @click="toggleCompose"><span>{{ ComposeMsg }}</span>Compose</button>
 
@@ -38,6 +38,10 @@ export default {
             mailService.getMail(res.id)
                 .then(res => this.mails.push(res))
         },
+        filterBy(criteria) {
+            // console.log('criteria',criteria)
+            // mailService.filterBy(criteria)
+        }
     },
     computed: {
     },

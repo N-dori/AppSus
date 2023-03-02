@@ -45,11 +45,12 @@ const loggedinUser = {
 }
 
 const criteria = {
-    status: 'inbox/sent/trash/draft',
-    txt: 'puki', // no need to support complex text search
-    isRead: true, // (optional property, if missing: show all)
-    isStared: true, // (optional property, if missing: show all)
-    lables: ['important', 'romantic'] // has any of the labels
+    status: 'inbox',///sent/trash/draft',
+    txt: '', // no need to support complex text search
+    isRead: undefined,//true, // (optional property, if missing: show all)
+    // isUnread: false,//true, // (optional property, if missing: show all)
+    isStared: undefined,//true, // (optional property, if missing: show all)
+    lables: [],//['important', 'romantic'] // has any of the labels
 }
 
 function getMails() {
