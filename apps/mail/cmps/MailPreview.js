@@ -7,13 +7,18 @@ import { svgService } from "../../../services/svg.service.js"
 export default {
     props: ['mail'],
     template: `
-    <p v-if="mail" @click="showDetails" :class="isRead">
+    <p v-if="mail" :class="isRead">
+       <section @click="showDetails" >
         <span :class="isRead">{{ mail.from }}</span> &emsp; 
         <span>{{ mail.subject }}</span> - 
-        <span>{{ mail.body }}</span>&emsp;
+        <span>{{ mail.body }}</span> &emsp;
+    </section>
+    <section>
         <span>{{ getDate }}</span>
-        <div @click.prevent="deleteMail" className="mail-trash" v-html="getSvg('trash')"></div>
-    </p>
+        <div @click="deleteMail" className="mail-trash" v-html="getSvg('trash')"></div>
+    </section>
+</p>
+    
     `,
     data() {
         return {
@@ -28,8 +33,11 @@ export default {
         getSvg(iconName) {
             return svgService.getNoteSvg(iconName)
         },
-        deleteMail(){
-            console.log('hi from delete')
+        deleteMail() {
+            mailService.deleteMail(this.mail)
+            console.log('hi pre');
+
+            this.$emit('mail-deleted')
         },
     },
     computed: {
@@ -38,7 +46,8 @@ export default {
         },
         getDate() {
             let date = new Date(this.mail.sentAt).getDate()
-            return date
+            let month = new Date(this.mail.sentAt).toLocaleString('en', { month: 'short' })
+            return month + ' ' + date
         }
     },
     created() {
@@ -48,5 +57,6 @@ export default {
     },
     emits: [
         'detail',
+        'mail-deleted',
     ],
 }

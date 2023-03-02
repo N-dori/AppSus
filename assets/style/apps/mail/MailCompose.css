@@ -2,9 +2,14 @@
 
 .compose-container {
     border: 1px solid black;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
 }
 
 .compose {
+
     display: flex;
     flex-direction: column;
 }
