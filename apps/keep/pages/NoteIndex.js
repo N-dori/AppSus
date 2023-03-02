@@ -4,6 +4,7 @@ import { noteService } from '../services/note.service.js'
 import NoteHeader from '../cmps/NoteHeader.js'
 import NoteList from '../cmps/NoteList.js'
 import { svgService } from '../../../services/svg.service.js'
+import { eventBusService } from '../../../services/event-bus.service.js'
 
 
 export default {
@@ -28,8 +29,12 @@ export default {
 </section>
 
 </main>
-   <NoteList :notes="notes"
+   <NoteList  @pinChanged="updateAllNotes" v-if="PinedNotes" :notes="PinedNotes"
    @removeNote="remove"/>
+
+   <NoteList  @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
+   @removeNote="remove"/>
+
  
     `,
     data() {
@@ -38,14 +43,20 @@ export default {
             body: "",
             note: null,
             notes: [],
+            PinedNotes: null,
+            unPinedNotes: null,
             filterBy: {},
             isShown: false,
         }
     },
 
     created() {
-        noteService.query()
-            .then(notes => this.notes = notes)
+        this.reboot()
+            
+            
+            
+      
+      
 
     },
     methods: {
@@ -55,8 +66,7 @@ export default {
             .then(() => {
                 const idx = this.notes.findIndex(note => note.id === noteid)
                 this.notes.splice(idx, 1)
-                console.log(' this.notes', this.notes);
-                
+                console.log(' this.notes', this.notes); 
             })
      
             
@@ -81,6 +91,23 @@ export default {
           return svgService.getNoteSvg(type)
    
            
+        }, updateAllNotes(){
+                this.notes=[]
+            this.PinedNotes
+            this.unPinedNotes
+            this.notes=[... this.PinedNotes,... this.unPinedNotes]
+
+           noteService.saveNotes(this.notes) 
+           this.reboot()
+        }, 
+        reboot(){
+            noteService.query()
+            .then(notes => {
+                this.notes = notes
+                    this.PinedNotes= this.notes.filter(note=> note.isPinned===true )
+                    this.unPinedNotes= this.notes.filter(note=> note.isPinned===false )
+     
+            })
         }
 
     }, computed: {

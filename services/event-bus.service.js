@@ -22,7 +22,22 @@ export const eventBus = createEventEmitter(() => console.log('No handler associa
 //     'user-msg': [func1, func2],
 //     'test-event': [func3],
 // }
+export const eventBusService = { on, emit }
 
+function on(eventName, listener) {
+    const callListener = ({ detail }) => {
+        listener(detail)
+    }
+    window.addEventListener(eventName, callListener)
+    // Returning the unsubscribe function:
+    return () => {
+        window.removeEventListener(eventName, callListener)
+    }
+}
+
+function emit(eventName, data) {
+    window.dispatchEvent(new CustomEvent(eventName, { detail: data }))
+}
 
 export function showUserMsg(msg) {
     eventBus.emit('show-msg', msg)
