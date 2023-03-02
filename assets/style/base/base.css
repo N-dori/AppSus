@@ -5,13 +5,13 @@
 }
 
 html{
-  font-family: Roboto
+  font-family: Roboto;
 }
 
 body {
   margin: 0;
   padding: 0;
-  color: var(--clr4);
+  color: rgb(32, 33, 36)
 }
 
 h1,
@@ -21,7 +21,7 @@ h4,
 h5,
 h6 {
   margin: 0 0 1em;
-  font-family: 'Edu VIC WA NT Beginner', cursive;
+  font-family: Roboto;
 }
 
 p {
@@ -31,7 +31,11 @@ p {
 a {
   text-decoration: none;
   color: unset;
+  font-size: 1.2em;
+  margin-inline: 5px;
+  text-decoration: underline;
 }
+
 
 
 

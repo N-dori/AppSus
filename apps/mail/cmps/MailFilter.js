@@ -8,7 +8,7 @@ export default {
     props: [],
     template: `
     <section class="filter">
-<input v-if="criteria" v-model="criteria.txt" @input="search" type="text" placeholder="Search"> |
+<input v-if="criteria" v-model="criteria.txt" @input="search" type="text" placeholder="Search"> 
         <select @change ="isRead($event.target.value)">
             <option value="all">
                 All

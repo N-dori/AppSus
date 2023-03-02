@@ -11,8 +11,7 @@
   min-height: 100vh;
   min-width: 100vw;
   margin: 0 auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+
 }
 .txt-edit-layout{
   display: grid;
