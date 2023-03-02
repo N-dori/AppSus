@@ -31,10 +31,10 @@ export default {
     <ColorPicker @colorChanged="changeColor" />
 </section>
 </main>
-   <NoteList :color="this.color" @pinChanged="updateAllNotes" v-if="PinedNotes" :notes="PinedNotes"
+   <NoteList :color="color" @pinChanged="updateAllNotes" v-if="PinedNotes" :notes="PinedNotes"
    @removeNote="remove"/>
 
-   <NoteList :color="this.color" @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
+   <NoteList :color="color"  @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
    @removeNote="remove"/>
 
  
@@ -43,7 +43,7 @@ export default {
         return {
             title: "",
             body: "",
-            note: null,
+            note: {},
             notes: [],
             PinedNotes: null,
             unPinedNotes: null,
@@ -75,7 +75,7 @@ export default {
         },
         changeColor(color) {
             this.color=color
-  
+            this.note.style.backgroundColor=color
         },
         setTxt() {
             this.note.info.title = this.title
@@ -88,7 +88,7 @@ export default {
 
         },
         pushNote() {
-            
+
             noteService.save(this.note)
                 .then(note => {
                     this.notes.push(note)

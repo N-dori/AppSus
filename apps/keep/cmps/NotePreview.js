@@ -5,7 +5,7 @@ import NoteImg from "./NoteImg.js"
 export default{
     props: ['note'],
     template:`
-   <div >  <Component
+   <div>  <Component 
             :is="note.type"  
             :info="note.info" />
                 </div>

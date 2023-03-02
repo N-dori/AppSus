@@ -9,7 +9,7 @@ export default {
         <ul>
             <li  class="note-card" v-for="note in notes" :key="note.id">
              <div @click="changePin(note)" calss="svg-pin" v-html="setSvg('pin')"></div>
-	  <NotePreview  :note="note"  />
+	  <NotePreview :color="this.color" :note="note"  />
             <button @click="remove(note.id)">Close</button>
         </li>
             </ul>
