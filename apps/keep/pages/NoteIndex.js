@@ -19,16 +19,16 @@ export default {
      </div>
         <div  class="txt-editor-buttons">
        <div class="icons">
-       <i class="fa-regular fa-image"></i>
-       <i class="fa-regular fa-palette"></i>
-       <i class="fa-solid fa-list"></i>
-       <i class="fa-brands fa-youtube"></i>
+       <i @click="setType('img')" title="Image" class="fa-regular fa-image"></i>
+       <i @click="setType('Video')"title="Video" class="fa-brands fa-youtube"></i>
+       <i @click="setColor('color')" class="fa-solid fa-palette"></i>
+       <i @click="setType('Todo')" title="Todo" class="fa-solid fa-check"></i>
 </div>
        <button type="submit">+</button>
     </div>
     </form>
- 
-   </section>
+</section>
+
 </main>
    <NoteList :notes="notes"/>
  
@@ -60,12 +60,12 @@ export default {
 
 
         }, pushNote() {
-
             noteService.save(this.note)
                 .then(note => this.notes.push(note))
-
-
-
+        },setType(type){
+            console.log('tyoe',type);
+        },setColor(color){
+            
         }
 
     }, computed: {

@@ -1,6 +1,7 @@
 
 // בס"ד
 import NoteTxt from "./NoteTxt.js"
+import NoteImg from "./NoteImg.js"
 export default{
     props: ['note'],
     template:`
@@ -20,6 +21,7 @@ export default{
     },
     components:{
         NoteTxt,
+        NoteImg,
     }
 
 }

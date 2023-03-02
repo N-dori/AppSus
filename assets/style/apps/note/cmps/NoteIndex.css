@@ -1,56 +1,79 @@
  /* בס"ד */
-.txt-editor{
-    grid-column: 2;
+ .txt-editor {
+     grid-column: 2;
 
-    margin-inline-start: auto;
-    padding: 4px 16px 12px 16px;
-    color: #202124;
-    box-shadow: 0 3px 5px rgba(0,0,0,.20);
-    background-color: #fff;
-        border-color: #e0e0e0;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        min-width: 37.5em;
+     margin-inline-start: auto;
+     padding: 4px 16px 12px 16px;
+     margin-bottom: 30px;
+     color: #202124;
+     box-shadow: 0 3px 5px rgba(0, 0, 0, .20);
+     background-color: #fff;
+     border-color: #e0e0e0;
+     border: 1px solid transparent;
+     border-radius: 8px;
+     min-width: 37.5em;
+ }
+ 
+ .txt-editor .inputs-container {
+     display: flex;
+     flex-direction: column;     
+    }
+    .color-picker{
+        grid-column: 2;
+        display: flex;
+    }
+    .color-picker ul {
+        display: grid;
+        list-style: none;
+        padding: 24px;
+        grid-template-columns: repeat(5,1fr);
+    }
+    .color-picker ul li{
+   width: 24;
+   height: 24px;
+   background-color: aqua;
+   border-radius: 50%;
         
-}
+    }
 
-.txt-editor .inputs-container{
-display: flex;
-flex-direction: column;
+ .txt-editor input {
 
-}
-.txt-editor input{
+     white-space: pre-wrap;
+     word-wrap: break-word;
+     min-height: 43px;
+     padding: 10px 15px;
+     font-size: 1rem;
+     font-weight: 500;
+     line-height: 1.5rem;
+     letter-spacing: .00625em;
+     border-top-style: hidden;
+     border-right-style: hidden;
+     border-left-style: hidden;
+     border-bottom-style: hidden;
+ }
 
-white-space: pre-wrap;
-word-wrap: break-word;
-    min-height: 43px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5rem;
-    letter-spacing: .00625em;
-    border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-style: hidden;
-}
-.txt-editor .txt-editor-buttons{
-display: flex;
-justify-content: space-between;
-}
+ .txt-editor .txt-editor-buttons {
+     display: flex;
+     justify-content: space-between;
+     max-height: 1.5em;
+ }
 
-.txt-editor .txt-editor-buttons i{
+ .txt-editor .txt-editor-buttons i {
 
-    margin-block-start: 0.1em;
-}
-.icons{
-font-size: 1.1em;
-min-width: 150px;
-display: flex;
-justify-content: space-between;
-align-items: self-end;
-  
-}
-.txt-editor input:focus {
-    outline: none;
-  }
+     margin-block-start: 0.1em;
+ }
+
+ .icons {
+     font-size: 1.1em;
+     min-width: 150px;
+     display: flex;
+     justify-content: space-between;
+     align-items: self-end;
+
+ }
+
+ .txt-editor input:focus {
+     outline: none;
+ }
+
+ 

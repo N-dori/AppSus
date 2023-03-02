@@ -1,4 +1,5 @@
 import NotePreview from "./NotePreview.js"
+
 export default {
     props: ['notes'],
     template: `
@@ -29,6 +30,7 @@ export default {
     },
     components: {
         NotePreview,
+       
     },
     emits: [],
 }

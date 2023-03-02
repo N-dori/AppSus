@@ -10,6 +10,7 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
   color: var(--clr4);
 }
 
@@ -43,11 +44,7 @@ object {
 }
 
 /* tap targets: */
-nav a,
-button {
-  min-width: 48px;
-  min-height: 48px;
-}
+
 
 /* Simple and useful CSS Debugging Technique */
 .debug * {
