@@ -1,5 +1,6 @@
 // בס"ד
 
+import { storageService } from '../../../services/async-storage.service.js'
 import { mailService } from '../services/mail.service.js'
 
 
@@ -26,8 +27,8 @@ export default {
     },
     methods: {
         search() {
-            // console.log('this.criteria', this.criteria)
-            this.$emit('filter', this.criteria)
+            mailService.saveCriteria(this.criteria)
+            this.$emit('filter', 'txt')
         },
         isRead(val) {
             switch (val) {
@@ -39,7 +40,9 @@ export default {
                     break
             }
 
-            this.$emit('filter', this.criteria)
+            mailService.saveCriteria(this.criteria)
+
+            this.$emit('filter', 'isRead')
         },
     },
     computed: {

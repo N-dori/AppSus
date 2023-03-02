@@ -1,5 +1,6 @@
 // בס"ד
 
+
 import MailPreview from '../cmps/MailPreview.js'
 
 export default {
@@ -9,7 +10,10 @@ export default {
         <ul class="mail-list">
             <li class="mail-preview" v-for="mail in mails">
                 <MailPreview :mail="mail"/>
+                    
+             
             </li>
+              
         </ul>
     </section>
     `,
@@ -18,6 +22,7 @@ export default {
         }
     },
     methods: {
+        
     },
     computed: {
     },
@@ -25,6 +30,7 @@ export default {
     },
     components: {
         MailPreview,
+       
     },
     emits: [],
 }
