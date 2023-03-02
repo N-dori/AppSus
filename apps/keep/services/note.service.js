@@ -14,6 +14,7 @@ export const noteService = {
     save,
     getEmptyNotes,
     getEmptyNote,
+    saveNotes,
 
 }
 
@@ -69,11 +70,16 @@ function getEmptyNote(){
                 backgroundColor: '#00d'
             },
             info: {
+                isPinned: true,
                 title: '',
                 body:''
             }
     }
     return EmptyNote
+}
+
+function saveNotes(notes){
+    utilService.saveToStorage(note_KEY, notes)
 }
 
 function getEmptyNotes() {
@@ -87,6 +93,7 @@ function getEmptyNotes() {
                 backgroundColor: '#00d'
             },
             info: {
+                isPinned: true,
                 title: 'Fullstack Me Baby!',
                 body: 'Fullstack Me Baby!'
             }
@@ -97,6 +104,7 @@ function getEmptyNotes() {
             type: 'NoteTxt',
             isPinned: false,
             info: {
+                isPinned: false,
                 url: 'http://some-img/me',
                 title: 'Bobi and Me',
                 body: 'Bobi and Me'
@@ -111,6 +119,7 @@ function getEmptyNotes() {
             type: 'NoteTxt',
             isPinned: false,
             info: {
+                isPinned: false,
                 title: 'Get my stuff together',
                 body: 'Get my stuff together',
                 todos: [
