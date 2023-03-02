@@ -36,14 +36,17 @@ function get(noteId) {
 }
 
 function remove(noteId) {
+    console.log('from servics',noteId);
+    
     return storageService.remove(note_KEY, noteId)
 }
 
 function save(note) {
-    if (note.id) {
-        note.id=utilService.makeId()
+    const notes=utilService.loadFromStorage(note_KEY)
+    if (notes.includes(note)) {
         return storageService.put(note_KEY, note)
     } else {
+       
         return storageService.post(note_KEY, note)
     }
 
@@ -62,15 +65,14 @@ utilService.saveToStorage(note_KEY, notes)
 }
 function getEmptyNote(){
     const EmptyNote={
-        id: '',
+        id:utilService.makeId(),
             createdAt: Date.now(),
             type: 'NoteTxt',
-            isPinned: true,
+            isPinned: false,
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#000d'
             },
             info: {
-                isPinned: true,
                 title: '',
                 body:''
             }
@@ -93,7 +95,6 @@ function getEmptyNotes() {
                 backgroundColor: '#00d'
             },
             info: {
-                isPinned: true,
                 title: 'Fullstack Me Baby!',
                 body: 'Fullstack Me Baby!'
             }
@@ -104,7 +105,6 @@ function getEmptyNotes() {
             type: 'NoteTxt',
             isPinned: false,
             info: {
-                isPinned: false,
                 url: 'http://some-img/me',
                 title: 'Bobi and Me',
                 body: 'Bobi and Me'
@@ -119,7 +119,6 @@ function getEmptyNotes() {
             type: 'NoteTxt',
             isPinned: false,
             info: {
-                isPinned: false,
                 title: 'Get my stuff together',
                 body: 'Get my stuff together',
                 todos: [

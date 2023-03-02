@@ -37,7 +37,7 @@
     }
 
  .txt-editor input {
-
+    background-color: transparent;
      white-space: pre-wrap;
      word-wrap: break-word;
      min-height: 43px;
