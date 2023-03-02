@@ -25,3 +25,13 @@
      grid-template-columns: 1em 1fr 1em;
 
  }
+
+ .mail-trash {
+    display: inline;
+    z-index: 100;
+    cursor: grab;
+}
+
+.mail-trash:active {
+    cursor: grabbing;
+}

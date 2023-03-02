@@ -10,9 +10,9 @@ export default {
         <section class="mail-details-container">
               <button class ="go-back" @click="goBack">Back to inbox</button>
         <section class="mail-details" v-if="mail">
-            <p :class="isRead">{{ mail.subject }}</p>
-            <p :class="isRead">From: {{ mail.from }}</p>
-            <p :class="isRead">{{ mail.body }}</p>
+            <p>{{ mail.subject }}</p>
+            <p>From: {{ mail.from }}</p>
+            <p>{{ mail.body }}</p>
         </section> 
         </section>
      
@@ -29,9 +29,6 @@ export default {
         }
     },
     computed: {
-        isRead() {
-            return this.mail.isRead ? '' : 'unread'
-        }
     },
     created() {
         this.mailId = this.$route.params.mailId

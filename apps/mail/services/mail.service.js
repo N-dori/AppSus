@@ -11,6 +11,9 @@ export const mailService = {
     getCriteria,
     createDemoCriteria,
     send,
+    filterByTxt,
+    saveCriteria,
+    updateMail,
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -58,6 +61,10 @@ function getMails() {
     return storageService.query(MAILS_KEY)
 }
 
+function updateMail(mail) {
+    storageService.put(MAILS_KEY, mail)
+}
+
 function createDemoMails() {
     if (utilService.loadFromStorage(MAILS_KEY)) return
     utilService.saveToStorage(MAILS_KEY, emails)
@@ -89,4 +96,23 @@ function send(to, subject, body) {
     }
 
     return storageService.post(MAILS_KEY, newMail)
+}
+
+function saveCriteria(criteria) {
+    utilService.saveToStorage(CRITERIA_KEY, criteria)
+}
+
+function filterByTxt() {
+    let mails = utilService.loadFromStorage(MAILS_KEY)
+    let criteria = utilService.loadFromStorage(CRITERIA_KEY)
+
+    // if (criteria.txt === '') return mails
+
+    const txtRegex = new RegExp(criteria.txt, 'i')
+
+    let filteredMails = mails.filter(item =>
+        (txtRegex.test(item.subject) || txtRegex.test(item.body)) && item.isRead === criteria.isRead
+    )
+
+    return filteredMails
 }
