@@ -8,7 +8,8 @@ export default {
     <p v-if="mail" @click="showDetails" :class="isRead">
         <span :class="isRead">{{ mail.from }}</span> &emsp; 
         <span>{{ mail.subject }}</span> - 
-        <span>{{ mail.body }}</span>
+        <span>{{ mail.body }}</span>&emsp;
+        <span>{{ getDate }}</span>
     </p>
     `,
     data() {
@@ -22,7 +23,11 @@ export default {
     },
     computed: {
         isRead() {
-            return this.mail.isRead ? '' : 'unread'
+            return this.mail.isRead ? 'read' : 'unread'
+        },
+        getDate() {
+            let date = new Date(this.mail.sentAt).getDate()
+            return date
         }
     },
     created() {

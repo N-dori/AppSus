@@ -1,0 +1,10 @@
+/* בס"ד */
+
+.compose-container {
+    border: 1px solid black;
+}
+
+.compose {
+    display: flex;
+    flex-direction: column;
+}

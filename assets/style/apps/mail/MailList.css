@@ -6,7 +6,12 @@
      width: 100%;
      display: table;
      cursor: pointer;
+ }
+
+ .mail-preview p {
+
      padding: 0.2em;
+     margin: 0;
  }
 
  .mail-list {
