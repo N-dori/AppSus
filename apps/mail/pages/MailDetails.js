@@ -1,6 +1,6 @@
 // בס"ד
 
-import { eventBus, eventBusService } from "../../../services/event-bus.service.js"
+// import { eventBus, eventBusService } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 import { integrationService } from '../../../services/integration.service.js'
 
@@ -48,5 +48,5 @@ export default {
     },
     components: {
     },
-    emits: ['mail-note'],
+    emits: [],
 }

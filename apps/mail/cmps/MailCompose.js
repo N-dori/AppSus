@@ -37,10 +37,15 @@ export default {
         closeCompose() {
             this.$emit('close-compose')
         },
+        setParams() {
+            this.subject = this.$route.params.subject
+            this.body = this.$route.params.body
+        }
     },
     computed: {
     },
     created() {
+        this.setParams()
     },
     components: {
     },

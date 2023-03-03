@@ -20,7 +20,7 @@ const routerOptions = {
 			component: AboutUs,
 		},
 		{
-			path: '/mail/:subject?/:body?',
+			path: '/mail/:isCompose?/:subject?/:body?',
 			component: MailIndex,
 		},
 		{

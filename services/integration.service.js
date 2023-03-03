@@ -24,8 +24,8 @@ function fromMailToNote(mail) {
 function fromNoteToMail(note) {
     return {
         id: note.id,
-        subject: note.title,
-        body: note.body,
+        subject: note.info.title,
+        body: note.info.body,
         isRead: false,
         sentAt: null,
         removedAt: null,
