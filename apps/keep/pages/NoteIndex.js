@@ -1,4 +1,5 @@
 // בס"ד
+
 import NotePreview from '../cmps/NotePreview.js'
 import { noteService } from '../services/note.service.js'
 import NoteHeader from '../cmps/NoteHeader.js'
@@ -57,8 +58,8 @@ export default {
     },
 
     created() {
-        eventBusService.on('removeNote',(noteId)=>{
-                noteService.remove(noteId)
+        eventBusService.on('removeNote', (noteId) => {
+            noteService.remove(noteId)
             const note = this.notes.find(note => note.id === noteId)
             if (note.isPinned) {
                 const idx = this.PinedNotes.findIndex(note => note.id === noteId)
@@ -71,7 +72,7 @@ export default {
         this.reboot()
     },
     methods: {
-     
+
         changeColor(color) {
             this.color = color
             this.note.style.backgroundColor = color
@@ -81,7 +82,7 @@ export default {
             this.note.info.body = this.body
         },
         creatNewNote() {
-            
+
             const emptyNote = noteService.getEmptyNote()
             this.note = emptyNote
 
@@ -121,15 +122,15 @@ export default {
                     this.PinedNotes = this.notes.filter(note => note.isPinned === true)
                     this.unPinedNotes = this.notes.filter(note => note.isPinned === false)
                 })
-        },filter(txt){
+        }, filter(txt) {
             const txtRegex = new RegExp(txt, 'i')
-             const filterdNotes= this.notes.filter(item=>     
-                    txtRegex.test(item.info.title ))
+            const filterdNotes = this.notes.filter(item =>
+                txtRegex.test(item.info.title))
 
-                this.PinedNotes = filterdNotes.filter(note => note.isPinned === true)
-                 this.unPinedNotes = filterdNotes.filter(note => note.isPinned === false)
-                }
-                    
+            this.PinedNotes = filterdNotes.filter(note => note.isPinned === true)
+            this.unPinedNotes = filterdNotes.filter(note => note.isPinned === false)
+        }
+
 
     }, computed: {
 
@@ -142,6 +143,6 @@ export default {
         ColorPicker,
 
     },
-    emits:['removeNote']
+    emits: ['removeNote']
 
 }

@@ -29,8 +29,9 @@ export default {
     methods: {
         send() {
             mailService.send(this.to, this.subject, this.body)
-                .then(res =>{ 
-                    this.$emit('mail-sent',res)})
+                .then(res => {
+                    this.$emit('mail-sent', res)
+                })
         }
     },
     computed: {

@@ -1,3 +1,5 @@
+// בס"ד
+
 import NotePreview from "./NotePreview.js"
 import { svgService } from "../../../services/svg.service.js"
 export default {
@@ -22,18 +24,18 @@ export default {
     `,
     data() {
         return {
-     
-            isSown:true,
+
+            isSown: true,
         }
     },
     methods: {
-        changePin(note){
-         note.isPinned= !note.isPinned
-        this.$emit('pinChanged')
-         
-        },  setSvg(type){
-            return svgService.getNoteSvg(type) 
-          },
+        changePin(note) {
+            note.isPinned = !note.isPinned
+            this.$emit('pinChanged')
+
+        }, setSvg(type) {
+            return svgService.getNoteSvg(type)
+        },
     },
     computed: {
     },
@@ -41,7 +43,7 @@ export default {
     },
     components: {
         NotePreview,
-       
+
     },
     emits: ['pinChanged'],
 }

@@ -1,3 +1,4 @@
+// בס"ד
 
 import { eventBusService } from "../../../services/event-bus.service.js"
 export default {
@@ -8,12 +9,12 @@ export default {
     `,
     data() {
         return {
-           
+
         }
     },
     methods: {
-      
-     
+
+
     },
     computed: {
     },

@@ -1,57 +1,56 @@
  /* בס"ד */
 
-* {
-  box-sizing: border-box;
-}
+ * {
+   box-sizing: border-box;
+ }
 
-html{
-  font-family: Roboto;
-}
+ html {
+   font-family: Roboto;
+ }
 
-body {
-  margin: 0;
-  padding: 0;
-  color: rgb(32, 33, 36)
-}
+ body {
+   margin: 0;
+   padding: 0;
+   color: rgb(32, 33, 36)
+ }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 1em;
-  font-family: Roboto;
-}
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+   margin: 0 0 1em;
+   font-family: Roboto;
+ }
 
-p {
-  margin: 0 0 1em;
-}
+ p {
+   margin: 0 0 1em;
+ }
 
-a {
-  text-decoration: none;
-  color: unset;
-  font-size: 1.2em;
-  margin-inline: 5px;
-  text-decoration: underline;
-}
-
-
+ a {
+   text-decoration: none;
+   color: unset;
+   font-size: 1.2em;
+   margin-inline: 5px;
+   text-decoration: underline;
+ }
 
 
-/* Dont stretch my Media */
-img,
-embed,
-video,
-object {
-  max-width: 100%
-}
-
-/* tap targets: */
 
 
-/* Simple and useful CSS Debugging Technique */
-.debug * {
-  outline: 1px solid gold
-}
+ /* Dont stretch my Media */
+ img,
+ embed,
+ video,
+ object {
+   max-width: 100%
+ }
 
+ /* tap targets: */
+
+
+ /* Simple and useful CSS Debugging Technique */
+ .debug * {
+   outline: 1px solid gold
+ }

@@ -1,3 +1,4 @@
+// בס"ד
 
 export default {
     props: ['note'],

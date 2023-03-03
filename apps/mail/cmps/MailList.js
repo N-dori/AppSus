@@ -25,7 +25,8 @@ export default {
                 .then(res => {
                     console.log('hi lis');
 
-                    this.$emit('mails-update')})
+                    this.$emit('mails-update')
+                })
         },
     },
     computed: {

@@ -1,11 +1,12 @@
 
 // בס"ד
+
 import NoteTxt from "./NoteTxt.js"
 import NoteImg from "./NoteImg.js"
 import { eventBusService } from "../../../services/event-bus.service.js"
-export default{
+export default {
     props: ['note'],
-    template:`
+    template: `
 
 <div :style="{backgroundColor:this.note.style.backgroundColor}"> 
    <Component 
@@ -15,25 +16,25 @@ export default{
                 </div>
 
     `,
-    data(){
-        return{
-          
+    data() {
+        return {
+
         }
     },
-    created(){
-   
-        
+    created() {
+
+
     },
-    methods:{
-        remove(noteId){
-            eventBusService.emit('removeNote',noteId)
+    methods: {
+        remove(noteId) {
+            eventBusService.emit('removeNote', noteId)
         },
-       
 
-    },computed:{
+
+    }, computed: {
 
     },
-    components:{
+    components: {
         NoteTxt,
         NoteImg,
     }
