@@ -22,7 +22,7 @@ export default {
      </div>
         <div  class="txt-editor-buttons">
         <div class="svg-icons"> 
-       <div v-html="setSvg('colorPickerNone')"></div>
+       <div class="btn-color-picker" v-html="setSvg('colorPickerNone')"></div>
        <div @click="isShown=!isShown"> <div v-html="setSvg('palette')"></div></div>
     <div  v-html="setSvg('img')"></div>
        <div v-html="setSvg('youtube')"></div>

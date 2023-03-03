@@ -21,3 +21,6 @@ right: 1px !important;
     margin-inline-start: auto !important;
     cursor: pointer;
 }
+.svg-pin{
+    cursor: pointer;
+} 

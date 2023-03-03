@@ -14,16 +14,25 @@
 }
 .color-paleta-item.item1{
     background-color: #804674;
+    cursor:pointer;
 }
 .color-paleta-item.item2{
     background-color:#A86464;
+        cursor:pointer;
+
 }
 .color-paleta-item.item3{
     background-color: #B3E5BE;
+        cursor:pointer;
+
 }
 .color-paleta-item.item4{
     background-color: #F5FFC9;
+        cursor:pointer;
+
 }
 .color-paleta-item.item5{
     background-color:#FAF7F0;
+        cursor:pointer;
+
 }
