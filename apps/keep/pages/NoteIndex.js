@@ -25,7 +25,9 @@ export default {
         <div  class="txt-editor-buttons">
         <div class="svg-icons"> 
        <div @click="isShown=!isShown"> <div v-html="setSvg('palette')"></div></div>
-    <div  v-html="setSvg('img')"></div>
+
+   <div @click="uploadPic"><input v-if="isClicked" type="file" name="file"><div v-html="setSvg('img')"></div></div> 
+    
        <div v-html="setSvg('youtube')"></div>
        <div v-html="setSvg('check')"></div>
     </div>   
@@ -55,6 +57,7 @@ export default {
             filterBy: {},
             isShown: false,
             color: '',
+            isClicked:false,
         }
     },
 
@@ -135,7 +138,10 @@ export default {
 
             this.PinedNotes = filterdNotes.filter(note => note.isPinned === true)
             this.unPinedNotes = filterdNotes.filter(note => note.isPinned === false)
-        }
+        },uploadPic(){
+     this.isClicked=true
+    
+        },
     }, computed: {
 
     },
