@@ -6,6 +6,7 @@ export default {
     props: [],
     template: `
     <section class="compose-container">
+        <button @click="closeCompose">X</button>
         <h3>New Message</h3>
 
         <p>From: Your-Mail (user@appsus.com)</p>
@@ -32,7 +33,10 @@ export default {
                 .then(res => {
                     this.$emit('mail-sent', res)
                 })
-        }
+        },
+        closeCompose() {
+            this.$emit('close-compose')
+        },
     },
     computed: {
     },
@@ -40,5 +44,8 @@ export default {
     },
     components: {
     },
-    emits: ['mail-sent'],
+    emits: [
+        'mail-sent',
+        'close-compose',
+    ],
 }

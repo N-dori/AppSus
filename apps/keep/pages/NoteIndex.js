@@ -14,12 +14,14 @@ export default {
     <div></div>
     <main class="txt-edit-layout">
     <section :style="{backgroundColor:this.color}" class="txt-editor">
-
-        <form  @submit="pushNote">
+    <form  @submit="pushNote">
             <div class="inputs-container">
        <input @click="creatNewNote" @input="setTxt" class="txt-editor-title" type="text" 
-             v-model="title"  placeholder="Title">
-        <input type="text" v-model="body" @input="setTxt"  placeholder="Take A note">
+             v-model="title" 
+             ref="inputRef" 
+             placeholder="Title">
+        <input type="text" v-model="body" 
+        @input="setTxt"  placeholder="Take A note">
      </div>
         <div  class="txt-editor-buttons">
         <div class="svg-icons"> 
@@ -53,7 +55,7 @@ export default {
             unPinedNotes: null,
             filterBy: {},
             isShown: false,
-            color: ''
+            color: '',
         }
     },
 
@@ -69,7 +71,21 @@ export default {
                 this.unPinedNotes.splice(idx, 1)
             }
         })
+
+        // eventBusService.on('mail-note', (mail) => {
+        //     this.title = mail.title
+        //     // console.log(this.$refs.inputRef.$el)
+        // })
+
         this.reboot()
+    },
+    mounted() {
+        // this.$refs.input.focus()
+
+        // eventBusService.on('mail-note', (mail) => {
+        //     this.title = mail.title
+        //     console.log(this.$refs.inputRef.$el)
+        // })
     },
     methods: {
 
@@ -82,11 +98,8 @@ export default {
             this.note.info.body = this.body
         },
         creatNewNote() {
-
             const emptyNote = noteService.getEmptyNote()
             this.note = emptyNote
-
-
         },
         pushNote() {
 
@@ -94,10 +107,7 @@ export default {
                 .then(note => {
                     this.notes.push(note)
                     this.unPinedNotes.push(note)
-
                 })
-
-
         },
         setType(type) {
             console.log('tyoe', type);
@@ -130,8 +140,6 @@ export default {
             this.PinedNotes = filterdNotes.filter(note => note.isPinned === true)
             this.unPinedNotes = filterdNotes.filter(note => note.isPinned === false)
         }
-
-
     }, computed: {
 
     },

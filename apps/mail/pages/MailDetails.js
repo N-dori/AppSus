@@ -1,14 +1,17 @@
 // בס"ד
 
-import { eventBus } from "../../../services/event-bus.service.js"
+import { eventBus, eventBusService } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
+import { integrationService } from '../../../services/integration.service.js'
 
 export default {
     props: [],
     template: `
-        <pre v-if="mail">{{ mail }}</pre>
         <section class="mail-details-container">
-              <button class ="go-back-btn" @click="goBack">Back to inbox</button>
+        <section class="mail-details-btns">
+            <button class ="go-back-btn" @click="goBack">Back to inbox</button>
+            <button class="to-note-btn" @click="toNote">To note</button>
+        </section>      
         <section class="mail-details" v-if="mail">
             <p>{{ mail.subject }}</p>
             <p>From: {{ mail.from }}</p>
@@ -26,7 +29,12 @@ export default {
     methods: {
         goBack() {
             this.$router.push('/mail')
-        }
+        },
+        toNote() {
+            let note = integrationService.fromMailToNote(this.mail)
+            eventBusService.emit('mail-note', note)
+            this.$router.push('/keep')
+        },
     },
     computed: {
     },
@@ -37,5 +45,5 @@ export default {
     },
     components: {
     },
-    emits: [],
+    emits: ['mail-note'],
 }
