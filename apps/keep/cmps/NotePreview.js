@@ -36,10 +36,10 @@ export default {
             let mail = integrationService.fromNoteToMail(this.note)
             let subject = mail.subject
             let body = mail.body
-            console.log('subject.body', subject, body)
-            eventBusService.emit('open-compose')
+            // console.log('subject.body', subject, body)
+            // eventBusService.emit('open-compose')
 
-            this.$router.push('/mail/' + subject + '/' + body)
+            this.$router.push('/mail/true/' + subject + '/' + body)
         },
 
     }, computed: {
@@ -50,6 +50,6 @@ export default {
         NoteImg,
         integrationService,
     },
-    emits: ['open-compose']
+    emits: []
 
 }

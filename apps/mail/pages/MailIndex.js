@@ -2,6 +2,7 @@
 
 import { mailService } from '../services/mail.service.js'
 // import { storageService } from '../../../services/async-storage.service.js'
+// import { eventBusService } from "../../../services/event-bus.service.js"
 
 import MailList from '../cmps/MailList.js'
 import MailFilter from '../cmps/MailFilter.js'
@@ -65,7 +66,11 @@ export default {
             mailService.getMails()
                 .then(res => this.mails = res)
 
-        }
+        },
+        setParams() {
+            this.isCompose = this.$route.params.isCompose === 'true' ? true : false
+        },
+
     },
     computed: {
     },
@@ -73,11 +78,14 @@ export default {
         mailService.createDemoMails()
         mailService.getMails()
             .then(res => this.mails = res)
+
+        this.setParams()
     },
     components: {
         MailList,
         MailFilter,
         MailCompose,
+        // eventBusService,
     },
     emits: [],
 }
