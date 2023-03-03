@@ -22,6 +22,9 @@
     .btn-color-picker{
         cursor: pointer;
     }
+    .cursur-pointer{
+        cursor: pointer;
+    }
 
  .color-picker {
      grid-column: 2;
