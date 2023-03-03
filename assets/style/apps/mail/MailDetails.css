@@ -23,3 +23,12 @@
     margin-bottom: 1em;
     width: fit-content;
 }
+.to-note-btn {
+    margin-bottom: 1em;
+    width: fit-content;
+}
+
+.mail-details-btns{
+    display: flex;
+    justify-content: space-between;
+}

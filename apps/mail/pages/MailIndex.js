@@ -27,7 +27,8 @@ export default {
     <MailList @mails-update="reboot" v-if="mails" :mails="mails"/>
 
 
-    <MailCompose v-if="isCompose"  @mail-sent="updateMails"/>
+    <MailCompose v-if="isCompose"  @mail-sent="updateMails"
+    @close-compose="toggleCompose"/>
     </section>
        
     `,
@@ -41,7 +42,7 @@ export default {
     methods: {
         toggleCompose() {
             this.isCompose = !this.isCompose
-            this.ComposeMsg = this.ComposeMsg === '' ? 'Close '  : ''
+            // this.ComposeMsg = this.ComposeMsg === '' ? 'Close '  : ''
         },
         updateMails(res) {
             this.toggleCompose()
