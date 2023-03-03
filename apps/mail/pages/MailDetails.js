@@ -32,8 +32,11 @@ export default {
         },
         toNote() {
             let note = integrationService.fromMailToNote(this.mail)
-            eventBusService.emit('mail-note', note)
-            this.$router.push('/keep')
+            let title = note.info.title
+            let body = note.info.body
+            // console.log('title,body',title,body)
+            // eventBusService.emit('mail-note')
+            this.$router.push('/keep/' +title + '/' + body)
         },
     },
     computed: {

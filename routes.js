@@ -20,11 +20,11 @@ const routerOptions = {
 			component: AboutUs,
 		},
 		{
-			path: '/mail',
+			path: '/mail/:subject?/:body?',
 			component: MailIndex,
 		},
 		{
-			path: '/keep',
+			path: '/keep/:title?/:body?',
 			component: NoteIndex,
 		},
 		{

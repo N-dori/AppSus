@@ -18,7 +18,6 @@ export default {
             <div class="inputs-container">
        <input @click="creatNewNote" @input="setTxt" class="txt-editor-title" type="text" 
              v-model="title" 
-             ref="inputRef" 
              placeholder="Title">
         <input type="text" v-model="body" 
         @input="setTxt"  placeholder="Take A note">
@@ -72,23 +71,19 @@ export default {
             }
         })
 
-        // eventBusService.on('mail-note', (mail) => {
-        //     this.title = mail.title
-        //     // console.log(this.$refs.inputRef.$el)
-        // })
-
         this.reboot()
+
+        this.setParams()
     },
     mounted() {
-        // this.$refs.input.focus()
 
-        // eventBusService.on('mail-note', (mail) => {
-        //     this.title = mail.title
-        //     console.log(this.$refs.inputRef.$el)
-        // })
     },
     methods: {
-
+        setParams() {
+            this.title = this.$route.params.title
+            this.body = this.$route.params.body
+            console.log('this.title , this.body', this.title, this.body);
+        },
         changeColor(color) {
             this.color = color
             this.note.style.backgroundColor = color
@@ -100,6 +95,7 @@ export default {
         creatNewNote() {
             const emptyNote = noteService.getEmptyNote()
             this.note = emptyNote
+            console.log('this.$route.params', this.$route.params)
         },
         pushNote() {
 
