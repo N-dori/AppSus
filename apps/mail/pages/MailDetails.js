@@ -8,7 +8,7 @@ export default {
     template: `
         <pre v-if="mail">{{ mail }}</pre>
         <section class="mail-details-container">
-              <button class ="go-back" @click="goBack">Back to inbox</button>
+              <button class ="go-back-btn" @click="goBack">Back to inbox</button>
         <section class="mail-details" v-if="mail">
             <p>{{ mail.subject }}</p>
             <p>From: {{ mail.from }}</p>

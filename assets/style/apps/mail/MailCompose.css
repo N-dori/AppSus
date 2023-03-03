@@ -8,8 +8,28 @@
     background-color: #fff;
 }
 
-.compose {
+.compose-form {
 
     display: flex;
     flex-direction: column;
+}
+
+.compose-btn {
+    grid-column: 1;
+    grid-row: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.3em;
+
+    font-weight: 500;
+    width: fit-content;
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
+    background-color: #c2e7ff;
+    border-radius: 16px;
+    color: #001d35;
+    height: 56px;
+    min-width: 96px;
+    font-size: .875rem;
+    letter-spacing: normal;
 }

@@ -15,7 +15,7 @@ export default {
     </section>
     <section>
         <span>{{ getDate }}</span>
-        <div @click="deleteMail" className="mail-trash" v-html="getSvg('trash')"></div>
+        <div @click="deleteMail" className="mail-trash-icon" v-html="getSvg('trash')"></div>
     </section>
 </p>
     

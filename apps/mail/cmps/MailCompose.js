@@ -10,7 +10,7 @@ export default {
 
         <p>From: Your-Mail (user@appsus.com)</p>
         
-        <form class="compose" @submit.prevent="send">
+        <form class="compose-form" @submit.prevent="send">
             <input v-model="to" type="text" placeholder="To">
             <input v-model="subject" type="text" placeholder="Subject">
             <textarea v-model="body" rows="10" cols="50"></textarea>
