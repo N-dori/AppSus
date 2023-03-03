@@ -13,13 +13,21 @@ export default {
     <section class="mail-grid">
     <MailFilter @filter="filterBy"/>
 
-<button class="compose-btn" @click="toggleCompose"><span>{{ ComposeMsg }}</span>Compose</button>
+    <section class="side-bar">
+        <button class="compose-btn" @click="toggleCompose"><span>{{ ComposeMsg }}</span><span>Compose</span></button>
+    <ul class="filter-list">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    </section>
+
 
 
     <MailList @mails-update="reboot" v-if="mails" :mails="mails"/>
 
 
-<MailCompose v-if="isCompose"  @mail-sent="updateMails"/>
+    <MailCompose v-if="isCompose"  @mail-sent="updateMails"/>
     </section>
        
     `,
@@ -33,7 +41,7 @@ export default {
     methods: {
         toggleCompose() {
             this.isCompose = !this.isCompose
-            this.ComposeMsg = this.ComposeMsg === '' ? 'Close ' : ''
+            this.ComposeMsg = this.ComposeMsg === '' ? 'Close '  : ''
         },
         updateMails(res) {
             this.toggleCompose()

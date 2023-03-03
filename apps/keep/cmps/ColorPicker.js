@@ -1,3 +1,5 @@
+// בס"ד
+
 export default {
     props: [],
     template: `
@@ -15,8 +17,8 @@ export default {
         }
     },
     methods: {
-        setColor(color){
-            this.$emit('colorChanged',color)
+        setColor(color) {
+            this.$emit('colorChanged', color)
         }
     },
     computed: {

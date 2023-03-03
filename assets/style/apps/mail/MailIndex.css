@@ -1,1 +1,17 @@
  /* בס"ד */
+
+ .mail-grid {
+     display: grid;
+     grid-template-columns: 256px minmax(500px, 1fr) 1em;
+     min-height: 100%
+ }
+
+ .side-bar {
+     grid-column: 1/2;
+     grid-row: 1/3;
+     background-image: linear-gradient(to right ,rgb(239, 235, 235), #fff);
+    }
+
+ .filter-list {
+     grid-row: 2/3;
+ }

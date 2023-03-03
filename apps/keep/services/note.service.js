@@ -1,4 +1,5 @@
 // בס"ד
+
 'use strict'
 
 import { storageService } from '../../../services/async-storage.service.js'
@@ -36,17 +37,17 @@ function get(noteId) {
 }
 
 function remove(noteId) {
-    console.log('from servics',noteId);
-    
+    console.log('from servics', noteId);
+
     return storageService.remove(note_KEY, noteId)
 }
 
 function save(note) {
-    const notes=utilService.loadFromStorage(note_KEY)
+    const notes = utilService.loadFromStorage(note_KEY)
     if (notes.includes(note)) {
         return storageService.put(note_KEY, note)
     } else {
-       
+
         return storageService.post(note_KEY, note)
     }
 
@@ -54,33 +55,33 @@ function save(note) {
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(note_KEY)
-    if (!notes || !notes.length){
-           notes =  getEmptyNotes()
-           console.log('notes',notes);
-           
-utilService.saveToStorage(note_KEY, notes)
-    return notes
+    if (!notes || !notes.length) {
+        notes = getEmptyNotes()
+        console.log('notes', notes);
+
+        utilService.saveToStorage(note_KEY, notes)
+        return notes
     }
-  
+
 }
-function getEmptyNote(){
-    const EmptyNote={
-        id:utilService.makeId(),
-            createdAt: Date.now(),
-            type: 'NoteTxt',
-            isPinned: false,
-            style: {
-                backgroundColor: 'red'
-            },
-            info: {
-                title: '',
-                body:''
-            }
+function getEmptyNote() {
+    const EmptyNote = {
+        id: utilService.makeId(),
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: 'red'
+        },
+        info: {
+            title: '',
+            body: ''
+        }
     }
     return EmptyNote
 }
 
-function saveNotes(notes){
+function saveNotes(notes) {
     utilService.saveToStorage(note_KEY, notes)
 }
 
@@ -127,7 +128,7 @@ function getEmptyNotes() {
                 backgroundColor: '#00d'
             }
         },
-        
+
     ]
     return notes
 }

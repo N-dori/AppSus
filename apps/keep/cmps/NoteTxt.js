@@ -1,3 +1,4 @@
+// בס"ד
 
 export default {
     props: ['info'],
@@ -7,12 +8,12 @@ export default {
     `,
     data() {
         return {
-           
+
         }
     },
     methods: {
-      
-     
+
+
     },
     computed: {
     },

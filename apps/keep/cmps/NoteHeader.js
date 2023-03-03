@@ -1,5 +1,7 @@
+// בס"ד
+
 export default {
-    template:`
+    template: `
     <section class="note-main-header">
        <div class="logo-button-container"> <button>☰</button>
     <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" >
@@ -8,22 +10,22 @@ export default {
    
     <input @input="onSearch" type="text" v-model="txt" placeholder="search">
    </section>`,
-    data(){
+    data() {
         return {
-            txt:""
+            txt: ""
         }
     },
 
-    created(){
+    created() {
 
     },
-    methods:{
-        onSearch(){
-                this.$emit('onSearch',this.txt)
+    methods: {
+        onSearch() {
+            this.$emit('onSearch', this.txt)
         }
 
-    },computed:{
+    }, computed: {
 
-    },emits:['onSearch']
+    }, emits: ['onSearch']
 
 }
