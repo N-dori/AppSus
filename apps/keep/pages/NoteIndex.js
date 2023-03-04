@@ -14,7 +14,7 @@ export default {
     <div></div>
     <main class="txt-edit-layout">
     <section :style="{backgroundColor:this.color}" class="txt-editor">
-    <form @submit="pushNote" >
+    <form @submit.prevent="pushNote"  >
             <div class="inputs-container">
        <input  class="txt-editor-title" type="text" 
              v-model="note.info.title" 
@@ -95,7 +95,7 @@ export default {
         },
     
         pushNote() {
-            if (this.note.info.url=null) {
+            if (this.note.info.url===null) {
                 console.log('note type changed');
                 
                 this.note.type = 'NoteTxt'
@@ -109,9 +109,10 @@ export default {
                     this.notes.push(note)
                     this.unPinedNotes.push(note)
                   console.log('this.note.info.url', this.note.info.url);
-                    this.note.info.url
-                    this.note.style.backgroundColor='#ffff'
-                        this.note=noteService.getEmptyNote('NoteTxt')
+               
+
+                    this.note.style.backgroundColor='#fff'
+                     this.note=noteService.getEmptyNote('NoteTxt')
                 })
 
         },
@@ -154,7 +155,7 @@ export default {
                 const imageData = e.target.result;
                 this.note.info.url = imageData
                 console.log('this.note.info.url', this.note);
-                this.pushNote()
+              //  this.pushNote()
             };
 
 
