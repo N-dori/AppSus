@@ -5,8 +5,8 @@ export default {
     
     template: `
    <img v-if=" this.info.url" :src=" this.info.url" />
-   <h3>{{info.body}}</h3>
    <h3>{{info.title}}</h3>
+   <h3>{{info.body}}</h3>
   
     `,
     data() {
