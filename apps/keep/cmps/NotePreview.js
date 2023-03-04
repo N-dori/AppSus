@@ -10,7 +10,7 @@ export default {
     props: ['note'],
     template: `
 
-<div :style="{backgroundColor:this.note.style.backgroundColor}"> 
+<div @click="openModal" :style="{backgroundColor:this.note.style.backgroundColor}"> 
    <Component 
             :is="note.type"  
             :info="note.info" />
@@ -32,6 +32,9 @@ export default {
     methods: {
         remove(noteId) {
             eventBusService.emit('removeNote', noteId)
+        },openModal(){
+        
+       eventBusService.emit('onOpenModal',this.note)
         },
         toMail() {
             let mail = integrationService.fromNoteToMail(this.note)
@@ -51,6 +54,6 @@ export default {
         NoteImg,
         integrationService,
     },
-    emits: []
+    emits: ['onOpenModal']
 
 }

@@ -9,7 +9,7 @@ export default {
   
 		<article class="cards-container">
         <ul>
-            <li @click="openModal" class="note-card" v-for="note in notes" :key="note.id">
+            <li  class="note-card" v-for="note in notes" :key="note.id">
        
              <div @click="changePin(note)" calss="svg-pin" v-html="setSvg('pin')"></div>
 	  <NotePreview :note="note"  />
@@ -33,11 +33,6 @@ export default {
 
         }, setSvg(type) {
             return svgService.getNoteSvg(type)
-        },openModal(){
-            console.log('this.note.id',this.note.id);
-            
-            this.note.id
-           // this.$emit('onOpenModal',)
         }
     },
     computed: {

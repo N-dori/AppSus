@@ -45,7 +45,7 @@ export default {
    <NoteList  @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
   />
 
- <Modal v-if="isModalOpen" />
+ <Modal @updateNote="updateNote" :clickedNote="clickedNote" @closeModal="isModalOpen=null" v-if="isModalOpen" />
     `,
     data() {
         return {
@@ -59,7 +59,8 @@ export default {
             isShown: false,
             color: '',
             isClicked: false,
-            isModalOpen: null
+            isModalOpen: null,
+            clickedNote:null,
 
         }
     },
@@ -78,6 +79,15 @@ export default {
                 this.unPinedNotes.splice(idx, 1)
             }
         })
+        eventBusService.on('onOpenModal',(note)=>{
+            console.log('idex onModal',note);
+            this.clickedNote=note
+            console.log(' this.clickedNote', this.clickedNote);
+            
+            this.isModalOpen=true
+            
+
+        })
 
         this.reboot()
 
@@ -90,6 +100,14 @@ export default {
         setParams() {
             this.title = this.$route.params.title
             this.body = this.$route.params.body
+        },updateNote(updatedNote){
+            let noteToUpDate = this.notes.find(note => note.id === updatedNote.id)
+            noteToUpDate=updatedNote
+            noteService.put(noteToUpDate)
+            .then(note=>{
+                this.reboot()
+            })
+            
         },
         changeColor(color) {
             this.color = color

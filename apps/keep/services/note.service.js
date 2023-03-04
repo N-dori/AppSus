@@ -12,6 +12,7 @@ export const noteService = {
     query,
     get,
     remove,
+    put,
     save,
     getEmptyNotes,
     getEmptyNote,
@@ -50,6 +51,9 @@ function save(note) {
         return storageService.post(note_KEY, note)
     }
 
+}
+function put(note){
+  return   storageService.put(note_KEY, note)
 }
 
 function _createNotes() {
