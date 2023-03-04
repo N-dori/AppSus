@@ -17,18 +17,18 @@ export default {
     <section class="side-bar">
         <button class="compose-btn" @click="toggleCompose"><span>{{ ComposeMsg }}</span><span>Compose</span></button>
     <ul class="filter-list">
-        <li><button @click ="showMail(inbox)">inbox</button></li>
-        <li @click ="showMail(sent)"><button>sent</button></li>
-        <li @click ="showMail(trash)"><button>trash</button></li>
+        <li><button @click ="showMail('inbox')">inbox</button></li>
+        <li @click ="showMail('sent')"><button>sent</button></li>
+        <li @click ="showMail('trash')"><button>trash</button></li>
     </ul>
     </section>
 
 
 
-    <MailList @mails-update="reboot" v-if="mails" :mails="mails"/>
+    <MailList @mails-update="showMail" v-if="mails" :list="this.list" :mails="mails"/>
 
 
-    <MailCompose v-if="isCompose"  @mail-sent="updateMails"
+    <MailCompose v-if="isCompose" :list="this.list" @mail-sent="updateMails"
     @close-compose="toggleCompose"/>
     </section>
        
@@ -38,6 +38,7 @@ export default {
             mails: null,
             isCompose: false,
             ComposeMsg: '',
+            list: 'inbox',
         }
     },
     methods: {
@@ -45,11 +46,19 @@ export default {
             this.isCompose = !this.isCompose
             // this.ComposeMsg = this.ComposeMsg === '' ? 'Close '  : ''
         },
-        updateMails(res) {
+        updateMails(payload) {
             this.toggleCompose()
 
-            mailService.getMail(res.id)
-                .then(res => this.mails.push(res))
+            mailService.getMail(payload.res.id)
+                .then(res => {
+                    this.mails.unshift(payload.res)
+                    this.showMail(payload.list)
+                    this.mails.sort(this.sort(a, b))
+                })
+
+        },
+        sort(a, b) {
+            a['sentAt'] - b['sentAt']
         },
         filterBy() {
             // switch (val) {
@@ -65,19 +74,28 @@ export default {
         reboot() {
             mailService.getMails()
                 .then(res => this.mails = res)
-
         },
         setParams() {
             this.isCompose = this.$route.params.isCompose === 'true' ? true : false
         },
+        showMail(val) {
+            this.list = val
+            this.mails = mailService.showBy(val)
+            this.mails.sort(this.sort(a, b))
 
+        },
     },
     computed: {
     },
     created() {
         mailService.createDemoMails()
         mailService.getMails()
-            .then(res => this.mails = res)
+            .then(res => {
+                this.mails = res
+                this.showMail('inbox')
+                this.mails.sort(this.sort(a, b))
+            }
+            )
 
         this.setParams()
     },

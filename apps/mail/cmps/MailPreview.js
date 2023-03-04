@@ -35,8 +35,6 @@ export default {
         },
         deleteMail() {
             mailService.deleteMail(this.mail)
-            console.log('hi pre');
-
             this.$emit('mail-deleted')
         },
     },

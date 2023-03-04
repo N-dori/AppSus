@@ -5,7 +5,7 @@ import { mailService } from '../services/mail.service.js'
 import MailPreview from '../cmps/MailPreview.js'
 
 export default {
-    props: ['mails'],
+    props: ['mails', 'list'],
     template: `
     <section class="mail-list-container">
         <ul class="mail-list">
@@ -23,9 +23,7 @@ export default {
         updateMails() {
             mailService.getMails()
                 .then(res => {
-                    console.log('hi lis');
-
-                    this.$emit('mails-update')
+                    this.$emit('mails-update', this.list)
                 })
         },
     },

@@ -3,7 +3,7 @@
 import { mailService } from "../services/mail.service.js"
 
 export default {
-    props: [],
+    props: ['list'],
     template: `
     <section class="compose-container">
         <button @click="closeCompose">X</button>
@@ -31,7 +31,7 @@ export default {
         send() {
             mailService.send(this.to, this.subject, this.body)
                 .then(res => {
-                    this.$emit('mail-sent', res)
+                    this.$emit('mail-sent', { res, list: this.list })
                 })
         },
         closeCompose() {

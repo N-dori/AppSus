@@ -14,6 +14,7 @@ export const mailService = {
     saveCriteria,
     updateMail,
     deleteMail,
+    showBy,
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -25,7 +26,7 @@ const emails = [
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
-        sentAt: 1551133930594,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'momo@momo.com',
         to: 'user@appsus.com',
@@ -36,7 +37,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -47,7 +48,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -58,27 +59,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com'
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: 7777777777777,
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com'
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -89,17 +70,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com'
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -110,7 +81,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -121,7 +92,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -132,7 +103,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -143,7 +114,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -154,7 +125,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -165,7 +136,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -176,7 +147,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -187,7 +158,7 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -198,7 +169,40 @@ const emails = [
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: 7777777777777,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com',
+        isTrash: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com',
+        isTrash: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com',
+        isTrash: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
@@ -259,7 +263,7 @@ function send(to, subject, body) {
         to,
         isTrash: false,
     }
-    
+
     return storageService.post(MAILS_KEY, newMail)
 }
 
@@ -282,6 +286,39 @@ function filterBy() {
     return filteredMails
 }
 
+function showBy(val) {
+    let mails = utilService.loadFromStorage(MAILS_KEY)
+    mails.sort((a, b) => {
+        a['sentAt'] - b['sentAt']
+    })
+
+
+    switch (val) {
+        case 'inbox': {
+            return mails.filter(item =>
+                item['to'] === "user@appsus.com" && (item['isTrash'] === false)
+            )
+        }
+        case 'sent': {
+            return mails.filter(item =>
+                (item['from'] === 'user@appsus.com' && item['isTrash'] === false)
+            )
+        }
+        case 'trash': {
+            return mails.filter(item =>
+                item['isTrash'] === true
+            )
+        }
+    }
+}
+
 function deleteMail(mail) {
-    storageService.remove(MAILS_KEY, mail.id)
+    if (mail['isTrash'] === true
+    ) {
+        storageService.remove(MAILS_KEY, mail.id)
+        return
+    }
+
+    mail['isTrash'] = true
+    storageService.put(MAILS_KEY, mail)
 }
