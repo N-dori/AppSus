@@ -19,16 +19,30 @@
      display: flex;
      flex-direction: column;
  }
-    .btn-color-picker{
-        cursor: pointer;
-    }
-    .cursur-pointer{
-        cursor: pointer;
-    }
+
+ .btn-color-picker {
+     cursor: pointer;
+ }
+
+ .cursur-pointer {
+     cursor: pointer;
+ }
 
  .color-picker {
      grid-column: 2;
      display: flex;
+ }
+
+ .file-dialog {
+     position: relative;
+ }
+
+ .btn-file-dialog {
+     position: absolute;
+     width: 5px;
+     opacity: 0;
+     cursor: pointer;
+    
  }
 
  .color-paleta {

@@ -37,7 +37,6 @@ function get(noteId) {
 }
 
 function remove(noteId) {
-    console.log('from servics', noteId);
 
     return storageService.remove(note_KEY, noteId)
 }
@@ -64,20 +63,23 @@ function _createNotes() {
     }
 
 }
-function getEmptyNote() {
+function getEmptyNote(type) {
     const EmptyNote = {
         id: utilService.makeId(),
         createdAt: Date.now(),
-        type: 'NoteTxt',
+        type,
         isPinned: false,
         style: {
             backgroundColor: 'lightgray'
         },
         info: {
             title: '',
-            body: ''
+            body: '',
+            url:null,
         }
     }
+    console.log('getEmptyNote',EmptyNote);
+    
     return EmptyNote
 }
 
@@ -115,7 +117,7 @@ function getEmptyNotes() {
             }
         },
         {
-            id: 'n102',
+            id: 'n109',
             createdAt: 1112222,
             type: 'NoteTxt',
             isPinned: false,

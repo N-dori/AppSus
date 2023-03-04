@@ -1,20 +1,28 @@
 // בס"ד
 
 export default {
-    props: ['note'],
+    props: ['info'],
+    
     template: `
-    <img src="https://motorsunsports.lv/uploads/images/Gallery/2011/Talsi-2011/tal21.jpg" >
+   <img v-if=" this.info.url" :src=" this.info.url" />
+   <h3>{{info.body}}</h3>
+   <h3>{{info.title}}</h3>
+  
     `,
     data() {
         return {
         }
     },
+    created(){
+console.log('note img ',this.info);
+
+    },
+
     methods: {
     },
     computed: {
     },
-    created() {
-    },
+   
     components: {
     },
     emits: [],

@@ -25,7 +25,8 @@ export default {
         }
     },
     created() {
-
+      //  console.log('note preview',this.note );
+        
 
     },
     methods: {

@@ -14,25 +14,25 @@ export default {
     <div></div>
     <main class="txt-edit-layout">
     <section :style="{backgroundColor:this.color}" class="txt-editor">
-    <form  @submit="pushNote">
+    <form @submit="pushNote" >
             <div class="inputs-container">
-       <input @click="creatNewNote" @input="setTxt" class="txt-editor-title" type="text" 
-             v-model="title" 
+       <input  class="txt-editor-title" type="text" 
+             v-model="note.info.title" 
              placeholder="Title">
-        <input type="text" v-model="body" 
-        @input="setTxt"  placeholder="Take A note">
+        <input type="text" v-model="note.info.body" 
+       placeholder="Take A note">
      </div>
         <div  class="txt-editor-buttons">
         <div class="svg-icons"> 
        <div @click="isShown=!isShown"> <div v-html="setSvg('palette')"></div></div>
 
-   <div @click="uploadPic"><input v-if="isClicked" type="file" name="file"><div v-html="setSvg('img')"></div></div> 
-    
+       <div class="file-dialog"><input @change="uploadPic($event)" class="btn-file-dialog"  type="file" name="file"><div v-html="setSvg('img')"></div></div> 
+       
        <div v-html="setSvg('youtube')"></div>
        <div v-html="setSvg('check')"></div>
     </div>   
-       <button type="submit" >Close</button>
-    </div>
+    <button type="submit" >Close</button>
+</div>
     </form>
     <ColorPicker v-if="isShown" @colorChanged="changeColor" />
 </section>
@@ -48,8 +48,8 @@ export default {
     `,
     data() {
         return {
-            title: "",
-            body: "",
+            // title: "",
+            // body: "",
             note: {},
             notes: [],
             PinedNotes: null,
@@ -57,11 +57,14 @@ export default {
             filterBy: {},
             isShown: false,
             color: '',
-            isClicked:false,
+            isClicked: false,
+            imageData: null
         }
     },
 
     created() {
+        this.note = noteService.getEmptyNote('NoteTxt')
+
         eventBusService.on('removeNote', (noteId) => {
             noteService.remove(noteId)
             const note = this.notes.find(note => note.id === noteId)
@@ -85,29 +88,34 @@ export default {
         setParams() {
             this.title = this.$route.params.title
             this.body = this.$route.params.body
-            console.log('this.title , this.body', this.title, this.body);
         },
         changeColor(color) {
             this.color = color
             this.note.style.backgroundColor = color
         },
-        setTxt() {
-            this.note.info.title = this.title
-            this.note.info.body = this.body
-        },
-        creatNewNote() {
-            const emptyNote = noteService.getEmptyNote()
-            this.note = emptyNote
-            console.log('this.$route.params', this.$route.params)
-        },
+    
         pushNote() {
-
+            if (this.note.info.url=null) {
+                console.log('note type changed');
+                
+                this.note.type = 'NoteTxt'
+            } else {
+                this.note.type = "NoteImg"
+                console.log('note type changed');
+             }
             noteService.save(this.note)
                 .then(note => {
+                    console.log(' pushnote', note);
                     this.notes.push(note)
                     this.unPinedNotes.push(note)
+                  console.log('this.note.info.url', this.note.info.url);
+                    this.note.info.url
+                    this.note.style.backgroundColor='#ffff'
+                        this.note=noteService.getEmptyNote('NoteTxt')
                 })
+
         },
+   
         setType(type) {
             console.log('tyoe', type);
         },
@@ -117,8 +125,6 @@ export default {
 
         }, updateAllNotes() {
             this.notes = []
-            this.PinedNotes
-            this.unPinedNotes
             this.notes = [... this.PinedNotes, ... this.unPinedNotes]
 
             noteService.saveNotes(this.notes)
@@ -138,10 +144,23 @@ export default {
 
             this.PinedNotes = filterdNotes.filter(note => note.isPinned === true)
             this.unPinedNotes = filterdNotes.filter(note => note.isPinned === false)
-        },uploadPic(){
-     this.isClicked=true
-    
         },
+        uploadPic(e) {
+
+            const image = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e => {
+                const imageData = e.target.result;
+                this.note.info.url = imageData
+                console.log('this.note.info.url', this.note);
+                this.pushNote()
+            };
+
+
+
+
+        }
     }, computed: {
 
     },

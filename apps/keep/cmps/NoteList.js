@@ -13,8 +13,6 @@ export default {
        
              <div @click="changePin(note)" calss="svg-pin" v-html="setSvg('pin')"></div>
 	  <NotePreview :note="note"  />
-      
-
         </li>
             </ul>
 		
@@ -40,6 +38,8 @@ export default {
     computed: {
     },
     created() {
+     //   console.log('notes list ', this.notes);
+        
     },
     components: {
         NotePreview,
