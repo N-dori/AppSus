@@ -17,9 +17,9 @@ export default {
     <section class="side-bar">
         <button class="compose-btn" @click="toggleCompose"><span>{{ ComposeMsg }}</span><span>Compose</span></button>
     <ul class="filter-list">
-        <li></li>
-        <li></li>
-        <li></li>
+        <li><button @click ="showMail(inbox)">inbox</button></li>
+        <li @click ="showMail(sent)"><button>sent</button></li>
+        <li @click ="showMail(trash)"><button>trash</button></li>
     </ul>
     </section>
 

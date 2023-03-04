@@ -1,6 +1,5 @@
 // בס"ד
 
-// import { storageService } from '../../../services/async-storage.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
@@ -29,7 +28,8 @@ const emails = [
         sentAt: 1551133930594,
         removedAt: null,
         from: 'momo@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: 'e102',
@@ -39,7 +39,19 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: '123',
+        body: 'Wגדבדגבדגבs',
+        isRead: true,
+        sentAt: 7777777777777,
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -69,7 +81,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -89,7 +102,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -99,7 +113,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -109,7 +124,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -119,7 +135,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -129,7 +146,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -139,7 +157,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -149,7 +168,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -159,7 +179,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -169,7 +190,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
     {
         id: utilService.makeId(),
@@ -179,17 +201,8 @@ const emails = [
         sentAt: 7777777777777,
         removedAt: null,
         from: 'בש@momo.com',
-        to: 'user@appsus.com'
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: 7777777777777,
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com'
+        to: 'user@appsus.com',
+        isTrash: false,
     },
 ]
 
@@ -244,8 +257,9 @@ function send(to, subject, body) {
         removedAt: null,
         from: 'user@appsus.com',
         to,
+        isTrash: false,
     }
-
+    
     return storageService.post(MAILS_KEY, newMail)
 }
 
