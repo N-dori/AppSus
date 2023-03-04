@@ -4,6 +4,7 @@ import NotePreview from '../cmps/NotePreview.js'
 import { noteService } from '../services/note.service.js'
 import NoteHeader from '../cmps/NoteHeader.js'
 import NoteList from '../cmps/NoteList.js'
+import Modal from '../cmps/Modal.js'
 import { svgService } from '../../../services/svg.service.js'
 import { eventBusService } from '../../../services/event-bus.service.js'
 import ColorPicker from '../cmps/ColorPicker.js'
@@ -44,7 +45,7 @@ export default {
    <NoteList  @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
   />
 
- 
+ <Modal v-if="isModalOpen" />
     `,
     data() {
         return {
@@ -58,7 +59,8 @@ export default {
             isShown: false,
             color: '',
             isClicked: false,
-            imageData: null
+            isModalOpen: null
+
         }
     },
 
@@ -171,6 +173,7 @@ export default {
         NoteHeader,
         NoteList,
         ColorPicker,
+        Modal,
 
     },
     emits: ['removeNote']
