@@ -15,6 +15,7 @@ export const mailService = {
     updateMail,
     deleteMail,
     showBy,
+    filterByStar,
 }
 
 const MAILS_KEY = 'mailsDB'
@@ -26,187 +27,204 @@ const emails = [
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'momo@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: 'e102',
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'SALE SALE SALE',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sunt aut nihil beatae in ',
+        isRead: false,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        from: 'Sale@mall.com',
+        to: 'user@appsus.com',
+        isTrash: true,
+        isStared: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'Hi from alaska',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sunt aut nihil beatae in ',
+        isRead: true,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        from: 'aunt@uncle.com',
+        to: 'user@appsus.com',
+        isTrash: false,
+        isStared: true,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'spam',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sunt aut nihil beatae in ',
+        isRead: false,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        from: 'בש@momo.com',
+        to: 'user@appsus.com',
+        isTrash: true,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
+        isStared: false,
     },
     {
         id: utilService.makeId(),
         subject: '123',
         body: 'Wגדבדגבדגבs',
         isRead: true,
-        sentAt: Date.now(),
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
         from: 'בש@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: Date.now(),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: Date.now(),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: Date.now(),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
+        isStared: false,
     },
 ]
 
@@ -262,6 +280,7 @@ function send(to, subject, body) {
         from: 'user@appsus.com',
         to,
         isTrash: false,
+        isStared: false,
     }
 
     return storageService.post(MAILS_KEY, newMail)
@@ -280,17 +299,23 @@ function filterBy() {
     const txtRegex = new RegExp(criteria.txt, 'i')
 
     let filteredMails = mails.filter(item =>
-        (txtRegex.test(item.from) || txtRegex.test(item.subject) || txtRegex.test(item.body)) && (item.isRead === criteria.isRead || criteria.isRead === undefined)
+        (txtRegex.test(item.from) || txtRegex.test(item.subject) || txtRegex.test(item.body)) && (item.isRead === criteria.isRead || criteria.isRead === undefined) /* && (item.isStared === criteria.isStared || criteria.isStared === undefined)
+    ) */
     )
-
     return filteredMails
+}
+
+function filterByStar() {
+    let mails = utilService.loadFromStorage(MAILS_KEY)
+    let criteria = utilService.loadFromStorage(CRITERIA_KEY)
+    console.log('mails', mails)
+    console.log('criteria', criteria)
+    return mails.filter(item => item.isStared === criteria.isStared || criteria.isStared === undefined)
+
 }
 
 function showBy(val) {
     let mails = utilService.loadFromStorage(MAILS_KEY)
-    mails.sort((a, b) => {
-        a['sentAt'] - b['sentAt']
-    })
 
 
     switch (val) {

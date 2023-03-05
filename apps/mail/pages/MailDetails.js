@@ -3,6 +3,7 @@
 // import { eventBus, eventBusService } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 import { integrationService } from '../../../services/integration.service.js'
+import { svgService } from '../../../services/svg.service.js'
 
 export default {
     props: [],
@@ -13,12 +14,12 @@ export default {
             <button class="to-note-btn" @click="toNote">To note</button>
         </section>      
         <section class="mail-details" v-if="mail">
-            <p>{{ mail.subject }}</p>
-            <p>From: {{ mail.from }}</p>
+            <h2>{{ mail.subject }}</h2>
+            <h3>From: {{ mail.from }}</h3>
             <p>{{ mail.body }}</p>
         </section> 
+        <div @click="deleteMail" className="mail-trash-icon" v-html="getNoteSvg('trash')"></div>
         </section>
-     
     `,
     data() {
         return {
@@ -36,7 +37,17 @@ export default {
             let body = note.info.body
             // console.log('title,body',title,body)
             // eventBusService.emit('mail-note')
-            this.$router.push('/keep/' +title + '/' + body)
+            this.$router.push('/keep/' + title + '/' + body)
+        },
+        deleteMail() {
+            mailService.deleteMail(this.mail)
+
+            this.$emit('mail-deleted')
+
+            this.$router.push('/mail')
+        },
+        getNoteSvg(iconName) {
+            return svgService.getNoteSvg(iconName)
         },
     },
     computed: {
@@ -48,5 +59,6 @@ export default {
     },
     components: {
     },
-    emits: [],
+    emits: ['mail-deleted',
+    ],
 }

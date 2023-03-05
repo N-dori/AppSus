@@ -60,7 +60,7 @@ export default {
             color: '',
             isClicked: false,
             isModalOpen: null,
-            clickedNote:null,
+            clickedNote: null,
 
         }
     },
@@ -79,13 +79,13 @@ export default {
                 this.unPinedNotes.splice(idx, 1)
             }
         })
-        eventBusService.on('onOpenModal',(note)=>{
-            console.log('idex onModal',note);
-            this.clickedNote=note
+        eventBusService.on('onOpenModal', (note) => {
+            console.log('idex onModal', note);
+            this.clickedNote = note
             console.log(' this.clickedNote', this.clickedNote);
-            
-            this.isModalOpen=true
-            
+
+            this.isModalOpen = true
+
 
         })
 
@@ -98,45 +98,46 @@ export default {
     },
     methods: {
         setParams() {
-            this.title = this.$route.params.title
-            this.body = this.$route.params.body
-        },updateNote(updatedNote){
+            this.note.info.title = this.$route.params.title
+            this.note.info.body = this.$route.params.body
+        },
+        updateNote(updatedNote) {
             let noteToUpDate = this.notes.find(note => note.id === updatedNote.id)
-            noteToUpDate=updatedNote
+            noteToUpDate = updatedNote
             noteService.put(noteToUpDate)
-            .then(note=>{
-                this.reboot()
-            })
-            
+                .then(note => {
+                    this.reboot()
+                })
+
         },
         changeColor(color) {
             this.color = color
             this.note.style.backgroundColor = color
         },
-    
+
         pushNote() {
-            if (this.note.info.url===null) {
+            if (this.note.info.url === null) {
                 console.log('note type changed');
-                
+
                 this.note.type = 'NoteTxt'
             } else {
                 this.note.type = "NoteImg"
                 console.log('note type changed');
-             }
+            }
             noteService.save(this.note)
                 .then(note => {
                     console.log(' pushnote', note);
                     this.notes.push(note)
                     this.unPinedNotes.push(note)
-                  console.log('this.note.info.url', this.note.info.url);
-               
+                    console.log('this.note.info.url', this.note.info.url);
 
-                    this.note.style.backgroundColor='#fff'
-                     this.note=noteService.getEmptyNote('NoteTxt')
+
+                    this.note.style.backgroundColor = '#fff'
+                    this.note = noteService.getEmptyNote('NoteTxt')
                 })
 
         },
-   
+
         setType(type) {
             console.log('tyoe', type);
         },
@@ -175,7 +176,7 @@ export default {
                 const imageData = e.target.result;
                 this.note.info.url = imageData
                 console.log('this.note.info.url', this.note);
-              //  this.pushNote()
+                //  this.pushNote()
             };
 
 

@@ -8,20 +8,26 @@ export default {
     props: ['mail'],
     template: `
     <p v-if="mail" :class="isRead">
-       <section @click="showDetails" >
-        <span :class="isRead">{{ mail.from }}</span> &emsp; 
-        <span>{{ mail.subject }}</span> - 
-        <span>{{ mail.body }}</span> &emsp;
-    </section>
-    <section>
-        <span>{{ getDate }}</span>
-        <div @click="deleteMail" className="mail-trash-icon" v-html="getSvg('trash')"></div>
-    </section>
-</p>
+        <section>
+            <section @click="toggleStar">
+                <div className="mail-star-icon" v-html="getMailSvg(this.star)"></div>
+            </section>
+            <section @click="showDetails" >
+                <span :class="isRead">{{ mail.from }}</span> &emsp; 
+                <span>{{ mail.subject }}</span> - 
+                <span>{{ mail.body }}</span> &emsp;
+            </section>
+        </section>
+        <section>
+            <span>{{ getDate }}</span>
+            <div @click="deleteMail" className="mail-trash-icon" v-html="getNoteSvg('trash')"></div>
+        </section>
+    </p>
     
     `,
     data() {
         return {
+            star: this.mail.isStared === true ? 'starFill' : 'star',
         }
     },
     methods: {
@@ -30,12 +36,26 @@ export default {
             mailService.updateMail(this.mail)
             this.$router.push('/mail/details/' + this.mail.id)
         },
-        getSvg(iconName) {
+        getNoteSvg(iconName) {
             return svgService.getNoteSvg(iconName)
+        },
+        getMailSvg(iconName) {
+            return svgService.getMailSvg(iconName)
         },
         deleteMail() {
             mailService.deleteMail(this.mail)
             this.$emit('mail-deleted')
+        },
+        toggleStar() {
+            this.mail.isStared = !this.mail.isStared
+            mailService.updateMail(this.mail)
+
+            if (this.star === 'star') {
+                this.star = 'starFill'
+                return
+            }
+
+            this.star = 'star'
         },
     },
     computed: {
