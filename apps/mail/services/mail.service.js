@@ -10,7 +10,8 @@ export const mailService = {
     getCriteria,
     createDemoCriteria,
     send,
-    filterBy,
+    filterByText,
+    filterByRead,
     saveCriteria,
     updateMail,
     deleteMail,
@@ -49,7 +50,7 @@ const emails = [
     {
         id: utilService.makeId(),
         subject: 'SALE SALE SALE',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sunt aut nihil beatae in ',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.  ',
         isRead: false,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
@@ -61,7 +62,7 @@ const emails = [
     {
         id: utilService.makeId(),
         subject: 'Hi from alaska',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sunt aut nihil beatae in ',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.  ',
         isRead: true,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
@@ -73,156 +74,156 @@ const emails = [
     {
         id: utilService.makeId(),
         subject: 'spam',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sunt aut nihil beatae in ',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.  ',
         isRead: false,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
+        to: 'בש@momo.com',
+        from: 'user@appsus.com',
         isTrash: true,
         isStared: false,
     },
     {
         id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
+        subject: 'New safty terms',
+        body: 'Update your security via gogle passwords',
+        isRead: false,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
+        from: 'google@google.com',
         to: 'user@appsus.com',
         isTrash: false,
         isStared: false,
     },
     {
         id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
+        subject: 'News letter',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
         isRead: true,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
+        from: 'club@momo.com',
         to: 'user@appsus.com',
         isTrash: false,
         isStared: false,
     },
     {
         id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
+        subject: 'Demo data',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
         isRead: true,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
+        to: 'lorem@ipsum.com',
+        from: 'user@appsus.com',
+        isTrash: false,
+        isStared: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'Try harder',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+        isRead: true,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        from: 'moti@vation.com',
         to: 'user@appsus.com',
         isTrash: false,
         isStared: false,
     },
     {
         id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
+        subject: 'Nah',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
         isRead: true,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
+        to: 'rea@lity.com',
+        from: 'user@appsus.com',
+        isTrash: false,
+        isStared: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'Its late',
+        body: 'WגדבדגLorem ipsum dolor sit amet consectetur adipisicing elit. בדגבs',
+        isRead: true,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        to: '2:26@am.com',
+        from: 'user@appsus.com',
+        isTrash: false,
+        isStared: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'BUGS BUGS BUGS',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+        isRead: true,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        from: 'bugs@evereywhere.com',
+        to: 'user@appsus.com',
+        isTrash: true,
+        isStared: true,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'test',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+        isRead: true,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        from: 'one@two.com',
         to: 'user@appsus.com',
         isTrash: false,
         isStared: false,
     },
     {
         id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
+        subject: 'almost',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
         isRead: true,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
+        from: 'abit@more.com',
         to: 'user@appsus.com',
         isTrash: false,
         isStared: false,
     },
     {
         id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
+        subject: 'not many left',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
         isRead: true,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
+        to: 'hang@on.com',
+        from: 'user@appsus.com',
+        isTrash: true,
+        isStared: false,
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'Sprint 3',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+        isRead: true,
+        sentAt: (Date.now() - (Math.random() * 1000000000)),
+        removedAt: null,
+        from: 'sleep@less.com',
         to: 'user@appsus.com',
         isTrash: false,
         isStared: false,
     },
     {
         id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
+        subject: 'Good Luck',
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+        isRead: false,
         sentAt: (Date.now() - (Math.random() * 1000000000)),
         removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
-        isStared: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: (Date.now() - (Math.random() * 1000000000)),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
-        isStared: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: (Date.now() - (Math.random() * 1000000000)),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
-        isStared: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: (Date.now() - (Math.random() * 1000000000)),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
-        isStared: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: (Date.now() - (Math.random() * 1000000000)),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
-        isTrash: false,
-        isStared: false,
-    },
-    {
-        id: utilService.makeId(),
-        subject: '123',
-        body: 'Wגדבדגבדגבs',
-        isRead: true,
-        sentAt: (Date.now() - (Math.random() * 1000000000)),
-        removedAt: null,
-        from: 'בש@momo.com',
-        to: 'user@appsus.com',
+        to: 'ullneed@it.com',
+        from: 'user@appsus.com',
         isTrash: false,
         isStared: false,
     },
@@ -290,7 +291,7 @@ function saveCriteria(criteria) {
     utilService.saveToStorage(CRITERIA_KEY, criteria)
 }
 
-function filterBy() {
+function filterByText() {
     let mails = utilService.loadFromStorage(MAILS_KEY)
     let criteria = utilService.loadFromStorage(CRITERIA_KEY)
 
@@ -299,19 +300,32 @@ function filterBy() {
     const txtRegex = new RegExp(criteria.txt, 'i')
 
     let filteredMails = mails.filter(item =>
-        (txtRegex.test(item.from) || txtRegex.test(item.subject) || txtRegex.test(item.body)) && (item.isRead === criteria.isRead || criteria.isRead === undefined) /* && (item.isStared === criteria.isStared || criteria.isStared === undefined)
-    ) */
+        (txtRegex.test(item.from) || txtRegex.test(item.subject) || txtRegex.test(item.body))
     )
+
+    return filteredMails
+}
+
+function filterByRead() {
+    let mails = utilService.loadFromStorage(MAILS_KEY)
+    let criteria = utilService.loadFromStorage(CRITERIA_KEY)
+
+    let filteredMails = mails.filter(item =>
+        (item.isRead === criteria.isRead || criteria.isRead === undefined)
+    )
+
+    console.log('filteredMails', filteredMails)
+
     return filteredMails
 }
 
 function filterByStar() {
     let mails = utilService.loadFromStorage(MAILS_KEY)
     let criteria = utilService.loadFromStorage(CRITERIA_KEY)
-    console.log('mails', mails)
-    console.log('criteria', criteria)
-    return mails.filter(item => item.isStared === criteria.isStared || criteria.isStared === undefined)
 
+    let filteredMails = mails.filter(item => item.isStared === criteria.isStared || criteria.isStared === undefined)
+
+    return filteredMails
 }
 
 function showBy(val) {

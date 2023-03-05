@@ -1,17 +1,35 @@
 /* בס"ד */
 
 .compose-container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    box-shadow: 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%), 0px 5px 5px -3px rgb(0 0 0 / 20%);
+    ;
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 10vw;
     background-color: #fff;
 }
 
-.compose-form {
+.compose-container>button {
+    border: none;
+    background-color: transparent;
+}
 
+.compose-form {
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+}
+
+.compose-form input,
+textarea {
+    border: none;
+    border-bottom: 1px solid rgb(100 121 143 / 12%);
+}
+
+hr {
+    /* color: rgb(100 121 143 / 12%); */
+    background-color: rgba(18, 22, 27, 0.12);
 }
 
 .compose-btn {
@@ -32,4 +50,11 @@
     min-width: 96px;
     font-size: .875rem;
     letter-spacing: normal;
+}
+
+.compose-form button {
+    width: fit-content;
+    border-radius: 20px;
+    background-color: #4285f4;
+    height: 2em;
 }
