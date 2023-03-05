@@ -8,13 +8,24 @@
     max-width: 350px;
     line-height: 1.25rem;
     break-inside: avoid;
+    border-radius: 8px;
 }
 
-.note-card button {}
+.note-card section {
+    border-radius: 8px;
+}
+.note-card img{
+    border-radius: 8px;
 
+}
 .cards-container {
     min-height: 40vh;
     columns: 3;
+}
+.preview-svg-container{
+    cursor: pointer;
+    display: flex;
+   gap:10px
 }
 
 .card-pin {

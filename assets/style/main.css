@@ -23,6 +23,7 @@
 @import 'apps/note/cmps/Notetxt.css';
 @import 'apps/note/cmps/ColorPicker.css';
 @import 'apps/note/cmps/Modal.css';
+@import 'apps/note/cmps/Trash.css';
 
  /* Mail */
  @import 'apps/mail/MailIndex.css';

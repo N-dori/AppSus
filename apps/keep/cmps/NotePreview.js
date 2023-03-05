@@ -1,6 +1,6 @@
 
 // בס"ד
-
+import { svgService } from "../../../services/svg.service.js"
 import NoteTxt from "./NoteTxt.js"
 import NoteImg from "./NoteImg.js"
 import { eventBusService } from "../../../services/event-bus.service.js"
@@ -15,8 +15,10 @@ export default {
             :is="note.type"  
             :info="note.info" />
         </div>
-        <button @click="toMail">To mail</button>
-        <button @click="remove(note.id)">Close</button>
+        <div class="preview-svg-container">
+        <div @click="toMail"><div  v-html="setSvg('mail')"></div></div>
+        <div @click="remove(note.id)"><div  v-html="setSvg('trash')"></div></div>
+        </div>
 </section>
     `,
     data() {
@@ -44,7 +46,10 @@ export default {
             // eventBusService.emit('open-compose')
 
             this.$router.push('/mail/true/' + subject + '/' + body)
-        },
+        },setSvg(type){
+            if(type==='mail')return svgService.getNoteSvg('mail')
+            if(type==='trash')return svgService.getNoteSvg('trash')
+        }
 
     }, computed: {
 

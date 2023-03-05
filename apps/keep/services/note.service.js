@@ -99,36 +99,36 @@ function getEmptyNotes() {
             type: 'NoteTxt',
             isPinned: true,
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#A86464'
             },
             info: {
-                title: 'Fullstack Me Baby!',
+                title: 'Googel Keep Me Baby!',
                 body: 'Fullstack Me Baby!'
             }
         },
         {
             id: 'n102',
             createdAt: 1112222,
-            type: 'NoteTxt',
+            type: 'NoteImg',
             isPinned: false,
             info: {
-                url: 'http://some-img/me',
-                title: 'Bobi and Me',
-                body: 'Bobi and Me'
+                url: 'https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                title: 'sprint 3 my fevorit',
+                body: 'Gmail and keep are synced'
             },
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#804674'
             }
         },
         {
             id: 'n109',
             createdAt: 1112222,
-            type: 'NoteTxt',
+            type: 'NoteImg',
             isPinned: false,
             info: {
-                url: 'http://some-img/me',
-                title: 'Bobi and Me',
-                body: 'Bobi and Me'
+                url: 'https://t4.ftcdn.net/jpg/02/59/36/31/240_F_259363172_jALzZGupDJXuJN4iioGkGAQu4keiG8Aq.jpg',
+                title: 'password for submarin',
+                body: '!@lki%$#hshs#'
             },
             style: {
                 backgroundColor: '#00d'

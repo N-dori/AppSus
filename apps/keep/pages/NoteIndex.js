@@ -17,8 +17,9 @@ export default {
     <div></div>
     <main class="txt-edit-layout">
         <nav v-if="isNavOpen" class="main-nav">
-            <li @click="setRoute">note</li>  
-            <li>trash</li>
+            <li @click="setRoute('notes')"><div class="icon"> <span v-html="setSvg('lightBolb')"></span></div></li>  
+            <li @click="setRoute('trash')"><div class="icon"> <svg xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 96 960 960" width="30"><path d="M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z"/></svg></div></li>  
+     
         </nav>
         <section v-if="!isTrashOpen" :style="{backgroundColor:this.color}" class="txt-editor">
     <form @submit.prevent="pushNote"  >
@@ -70,9 +71,9 @@ export default {
             color: '',
             isClicked: false,
             isModalOpen: null,
-            isNavOpen:false,
-            isTrashOpen:false,
-            trashNotes:null,
+            isNavOpen: false,
+            isTrashOpen: false,
+            trashNotes: [],
             clickedNote: null,
 
         }
@@ -80,7 +81,7 @@ export default {
 
     created() {
         this.note = noteService.getEmptyNote('NoteTxt')
-        this.trashNotes=utilService.loadFromStorage('deletedDB')
+        this.trashNotes = utilService.loadFromStorage('deletedDB')||[]
         eventBusService.on('removeNote', (noteId) => {
             const note = this.notes.find(note => note.id === noteId)
             this.trashNotes.push(note)
@@ -144,8 +145,8 @@ export default {
                     console.log(' pushnote', note);
                     this.notes.push(note)
                     this.unPinedNotes.push(note)
-                  this.note=noteService.getEmptyNote('NoteTxt')
-                    this.note.style.backgroundColor='#fff'
+                    this.note = noteService.getEmptyNote('NoteTxt')
+                    this.note.style.backgroundColor = '#fff'
 
                 })
 
@@ -188,17 +189,17 @@ export default {
             reader.onload = e => {
                 const imageData = e.target.result;
                 this.note.info.url = imageData
-        
+
             };
-        },openNav(){
-            this.isNavOpen= !this.isNavOpen
-        },setRoute(){
-          //  this.$router.push('/keep/trash')
-          this.isTrashOpen=!this.isTrashOpen
-          console.log('this.trashNotes',this.trashNotes);
-        },deleteNoteForever(noteId){
-           const idx= this.trashNotes.findIndex(item=>item.id===noteId)
-           this.trashNotes.splice(idx,1)
+        }, openNav() {
+            this.isNavOpen = !this.isNavOpen
+        }, setRoute(type) {
+            if (type === 'trash' && this.isTrashOpen === false) this.isTrashOpen = !this.isTrashOpen
+            if (type === 'notes' && this.isTrashOpen === true) this.isTrashOpen = !this.isTrashOpen
+
+        }, deleteNoteForever(noteId) {
+            const idx = this.trashNotes.findIndex(item => item.id === noteId)
+            this.trashNotes.splice(idx, 1)
 
         }
     }, computed: {
