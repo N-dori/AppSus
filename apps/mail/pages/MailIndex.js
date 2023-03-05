@@ -1,6 +1,7 @@
 // בס"ד
 
 import { mailService } from '../services/mail.service.js'
+import { svgService } from "../../../services/svg.service.js"
 // import { storageService } from '../../../services/async-storage.service.js'
 // import { eventBusService } from "../../../services/event-bus.service.js"
 
@@ -15,11 +16,15 @@ export default {
     <MailFilter @filter="filterBy"/>
 
     <section class="side-bar">
-        <button class="compose-btn" @click="toggleCompose"><span>{{ ComposeMsg }}</span><span>Compose</span></button>
+        <button class="compose-btn" @click="toggleCompose"><div className="mail-compose-icon" v-html="getMailSvg('compose')"></div>
+<span>Compose</span></button>
     <ul class="filter-list">
-        <li><button @click ="showMail('inbox')">inbox</button></li>
-        <li @click ="showMail('sent')"><button>sent</button></li>
-        <li @click ="showMail('trash')"><button>trash</button></li>
+        <li><button @click ="showMail('inbox')"><div className="mail-inbox-icon" v-html="getMailSvg('inbox')"></div>
+</button></li>
+        <li @click ="showMail('sent')"><button><div className="mail-sent-icon" v-html="getMailSvg('sent')"></div>
+</button></li>
+        <li @click ="showMail('trash')"><button><div className="mail-trash-icon" v-html="getNoteSvg('trash')"></div>
+</button></li>
     </ul>
     </section>
 
@@ -37,7 +42,6 @@ export default {
         return {
             mails: null,
             isCompose: false,
-            ComposeMsg: '',
             list: 'inbox',
         }
     },
@@ -53,24 +57,25 @@ export default {
                 .then(res => {
                     this.mails.unshift(payload.res)
                     this.showMail(payload.list)
-                    this.mails.sort(this.sort(a, b))
                 })
 
         },
-        sort(a, b) {
-            a['sentAt'] - b['sentAt']
+        sort(arr) {
+            return arr.sort((a, b) =>
+                b['sentAt'] - a['sentAt']
+            )
         },
-        filterBy() {
-            // switch (val) {
-            //     case 'txt':
+        filterBy(val) {
+            switch (val) {
+                case 'isRead':
+                    this.mails = mailService.filterBy()
+                    break
 
-            this.mails = mailService.filterBy()
-            //         break
-            // }
+                case 'isStar':
+                    this.mails = mailService.filterByStar()
+                    break
+            }
         },
-        // filterByTxt() {
-        //     this.mails = mailService.filterByTxt()
-        // },
         reboot() {
             mailService.getMails()
                 .then(res => this.mails = res)
@@ -81,8 +86,13 @@ export default {
         showMail(val) {
             this.list = val
             this.mails = mailService.showBy(val)
-            this.mails.sort(this.sort(a, b))
-
+            this.mails = this.sort(this.mails)
+        },
+        getNoteSvg(iconName) {
+            return svgService.getNoteSvg(iconName)
+        },
+        getMailSvg(iconName) {
+            return svgService.getMailSvg(iconName)
         },
     },
     computed: {
@@ -93,7 +103,7 @@ export default {
             .then(res => {
                 this.mails = res
                 this.showMail('inbox')
-                this.mails.sort(this.sort(a, b))
+                // this.mails.sort(this.sort(a, b))
             }
             )
 
@@ -103,6 +113,7 @@ export default {
         MailList,
         MailFilter,
         MailCompose,
+        svgService,
         // eventBusService,
     },
     emits: [],
