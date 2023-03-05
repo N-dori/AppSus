@@ -5,16 +5,22 @@ import { noteService } from '../services/note.service.js'
 import NoteHeader from '../cmps/NoteHeader.js'
 import NoteList from '../cmps/NoteList.js'
 import Modal from '../cmps/Modal.js'
+import TrashList from '../cmps/TrashList.js'
 import { svgService } from '../../../services/svg.service.js'
 import { eventBusService } from '../../../services/event-bus.service.js'
 import ColorPicker from '../cmps/ColorPicker.js'
+import { utilService } from '../../../services/util.service.js'
 
 export default {
     template: `
-        <NoteHeader @onSearch="filter"/>
+        <NoteHeader @onopenNav="openNav" @onSearch="filter"/>
     <div></div>
     <main class="txt-edit-layout">
-    <section :style="{backgroundColor:this.color}" class="txt-editor">
+        <nav v-if="isNavOpen" class="main-nav">
+            <li @click="setRoute">note</li>  
+            <li>trash</li>
+        </nav>
+        <section v-if="!isTrashOpen" :style="{backgroundColor:this.color}" class="txt-editor">
     <form @submit.prevent="pushNote"  >
             <div class="inputs-container">
        <input  class="txt-editor-title" type="text" 
@@ -36,17 +42,21 @@ export default {
 </div>
     </form>
     <ColorPicker v-if="isShown" @colorChanged="changeColor" />
-</section>
-</main>
+</section >
+    <section v-if="!isTrashOpen"  class="pinned-unpinned-container">
    <NoteList  @pinChanged="updateAllNotes" v-if="PinedNotes" 
    :notes="PinedNotes"
   />
 
    <NoteList  @pinChanged="updateAllNotes" v-if="unPinedNotes" :notes="unPinedNotes"
   />
-
+</section>
  <Modal @updateNote="updateNote" :clickedNote="clickedNote" @closeModal="isModalOpen=null" v-if="isModalOpen" />
-    `,
+ <section v-if="isTrashOpen" calss="deleted-notes">
+     <TrashList @deleteNoteForever="deleteNoteForever" :trashNotes="trashNotes" />
+    </section>
+</main> 
+   `,
     data() {
         return {
             // title: "",
@@ -60,17 +70,22 @@ export default {
             color: '',
             isClicked: false,
             isModalOpen: null,
+            isNavOpen:false,
+            isTrashOpen:false,
             clickedNote:null,
+            trashNotes:null,
 
         }
     },
 
     created() {
         this.note = noteService.getEmptyNote('NoteTxt')
-
+        this.trashNotes=utilService.loadFromStorage('deletedDB')
         eventBusService.on('removeNote', (noteId) => {
-            noteService.remove(noteId)
             const note = this.notes.find(note => note.id === noteId)
+            this.trashNotes.push(note)
+            utilService.saveToStorage('deletedDB', this.trashNotes)
+            noteService.remove(noteId)
             if (note.isPinned) {
                 const idx = this.PinedNotes.findIndex(note => note.id === noteId)
                 this.PinedNotes.splice(idx, 1)
@@ -131,8 +146,8 @@ export default {
                   console.log('this.note.info.url', this.note.info.url);
                
 
+                  this.note=noteService.getEmptyNote('NoteTxt')
                     this.note.style.backgroundColor='#fff'
-                     this.note=noteService.getEmptyNote('NoteTxt')
                 })
 
         },
@@ -174,12 +189,16 @@ export default {
             reader.onload = e => {
                 const imageData = e.target.result;
                 this.note.info.url = imageData
-                console.log('this.note.info.url', this.note);
-              //  this.pushNote()
             };
-
-
-
+        },openNav(){
+            this.isNavOpen= !this.isNavOpen
+        },setRoute(){
+          //  this.$router.push('/keep/trash')
+          this.isTrashOpen=!this.isTrashOpen
+          console.log('this.trashNotes',this.trashNotes);
+        },deleteNoteForever(noteId){
+           const idx= this.trashNotes.findIndex(item=>item.id===noteId)
+           this.trashNotes.splice(idx,1)
 
         }
     }, computed: {
@@ -192,6 +211,7 @@ export default {
         NoteList,
         ColorPicker,
         Modal,
+        TrashList,
 
     },
     emits: ['removeNote']

@@ -5,7 +5,6 @@ import { svgService } from "../../../services/svg.service.js"
 export default {
     props: ['notes'],
     template: `
-    <section>
   
 		<article class="cards-container">
         <ul>
@@ -17,7 +16,6 @@ export default {
             </ul>
 		
 		 </article>
-    </section> 
     
     `,
     data() {

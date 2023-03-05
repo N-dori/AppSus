@@ -9,15 +9,15 @@ import { integrationService } from '../../../services/integration.service.js'
 export default {
     props: ['note'],
     template: `
-
-<div @click="openModal" :style="{backgroundColor:this.note.style.backgroundColor}"> 
+<section :style="{backgroundColor:this.note.style.backgroundColor}">
+<div @click="openModal"> 
    <Component 
             :is="note.type"  
             :info="note.info" />
-            <button @click="remove(note.id)">Close</button>
-            <button @click="toMail">To mail</button>
-                </div>
-
+        </div>
+        <button @click="toMail">To mail</button>
+        <button @click="remove(note.id)">Close</button>
+</section>
     `,
     data() {
         return {

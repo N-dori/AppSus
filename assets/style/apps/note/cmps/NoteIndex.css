@@ -1,6 +1,10 @@
  /* בס"ד */
-
+ .txt-edit-layout {
+      display: grid;
+    grid-template-columns: minmax(0px,150px)  1fr ;
+ }
  .txt-editor {
+
      grid-column: 2;
      position: relative;
      margin-inline-start: auto;
@@ -14,7 +18,21 @@
      border-radius: 8px;
      min-width: 37.5em;
  }
-
+ .pinned-unpinned-container{
+    grid-column: 2;
+ }
+ .main-nav{
+    grid-column: 1;
+    background-color: antiquewhite;
+    width: 150px;
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+ }
+ .main-nav>*{
+    list-style-type: none;
+ }
  .txt-editor .inputs-container {
      display: flex;
      flex-direction: column;

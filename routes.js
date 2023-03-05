@@ -3,6 +3,7 @@
 import HomePage from './views/HomePage.js'
 import AboutUs from './views/AboutUs.js'
 import NoteIndex from './apps/keep/pages/NoteIndex.js'
+import Trash from './apps/keep/cmps/TrashList.js'
 import MailIndex from './apps/mail/pages/MailIndex.js'
 import MailDetails from './apps/mail/pages/MailDetails.js'
 
@@ -23,6 +24,7 @@ const routerOptions = {
 			path: '/mail/:isCompose?/:subject?/:body?',
 			component: MailIndex,
 		},
+		
 		{
 			path: '/keep/:title?/:body?',
 			component: NoteIndex,

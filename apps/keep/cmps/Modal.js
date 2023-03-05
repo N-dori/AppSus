@@ -8,8 +8,8 @@ export default {
             </div> 
             <img v-if=" img" :src=" img" />
        
-        <button @click="onCloseModal" type="submit" >Close</button>
-</section>
+            <button @click="onCloseModal" type="submit" >Close</button>
+        </section>
     
     `,
     data() {
