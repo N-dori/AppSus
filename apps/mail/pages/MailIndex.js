@@ -28,10 +28,7 @@ export default {
     </ul>
     </section>
 
-
-
-    <MailList @mails-update="showMail" v-if="mails" :list="this.list" :mails="mails"/>
-
+    <MailList @mails-update="showMail" v-if="mails" :list="this.list" :mails="this.mails"/>
 
     <MailCompose v-if="isCompose" :list="this.list" @mail-sent="updateMails"
     @close-compose="toggleCompose"/>
@@ -48,7 +45,6 @@ export default {
     methods: {
         toggleCompose() {
             this.isCompose = !this.isCompose
-            // this.ComposeMsg = this.ComposeMsg === '' ? 'Close '  : ''
         },
         updateMails(payload) {
             this.toggleCompose()
@@ -58,7 +54,6 @@ export default {
                     this.mails.unshift(payload.res)
                     this.showMail(payload.list)
                 })
-
         },
         sort(arr) {
             return arr.sort((a, b) =>
@@ -67,12 +62,19 @@ export default {
         },
         filterBy(val) {
             switch (val) {
+                case 'text':
+                    this.mails = mailService.filterByText()
+                    // this.showMail(this.list)
+                    break
+
                 case 'isRead':
-                    this.mails = mailService.filterBy()
+                    this.mails = mailService.filterByRead()
+                    // this.showMail(this.list)
                     break
 
                 case 'isStar':
                     this.mails = mailService.filterByStar()
+                    // this.showMail(this.list)
                     break
             }
         },
@@ -103,7 +105,6 @@ export default {
             .then(res => {
                 this.mails = res
                 this.showMail('inbox')
-                // this.mails.sort(this.sort(a, b))
             }
             )
 

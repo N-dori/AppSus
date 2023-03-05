@@ -13,7 +13,9 @@ export default {
         
         <form class="compose-form" @submit.prevent="send">
             <input v-model="to" type="text" placeholder="To">
+            <hr>
             <input v-model="subject" type="text" placeholder="Subject">
+            <hr>
             <textarea v-model="body" rows="10" cols="50"></textarea>
             <button>Send</button>
         </form>

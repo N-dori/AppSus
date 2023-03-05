@@ -8,8 +8,8 @@ export default {
     props: ['mail'],
     template: `
     <p v-if="mail" :class="isRead">
-        <section>
-            <section @click="toggleStar">
+        <section >
+            <section :class="this.star" @click="toggleStar">
                 <div className="mail-star-icon" v-html="getMailSvg(this.star)"></div>
             </section>
             <section @click="showDetails" >
@@ -23,7 +23,6 @@ export default {
             <div @click="deleteMail" className="mail-trash-icon" v-html="getNoteSvg('trash')"></div>
         </section>
     </p>
-    
     `,
     data() {
         return {
@@ -49,7 +48,7 @@ export default {
         toggleStar() {
             this.mail.isStared = !this.mail.isStared
             mailService.updateMail(this.mail)
-
+            
             if (this.star === 'star') {
                 this.star = 'starFill'
                 return
@@ -69,6 +68,8 @@ export default {
         }
     },
     created() {
+    },
+    mounted() {
     },
     components: {
         svgService,

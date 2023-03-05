@@ -62,6 +62,7 @@ function getNoteSvg(iconName) {
 function getMailSvg(iconName) {
     return mailSvgs[iconName]
 }
+getMailSvg('star')
 export const svgService = { getNoteSvg, getMailSvg }
 
 // in template

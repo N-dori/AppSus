@@ -10,7 +10,7 @@ export default {
     <section class="mail-list-container">
         <ul class="mail-list">
             <li class="mail-preview" v-for="mail in mails">
-                <MailPreview @mail-deleted="updateMails" :mail="mail"/>
+                <MailPreview v-if="mail" @mail-deleted="updateMails" :mail="mail"/>
             </li>
         </ul>
     </section>
