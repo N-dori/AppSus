@@ -9,8 +9,8 @@ export default {
     template: `
     <p v-if="mail" :class="isRead">
         <section >
-            <section :class="this.star" @click="toggleStar">
-                <div className="mail-star-icon" v-html="getMailSvg(this.star)"></div>
+            <section :class="myStar" @click="toggleStar">
+                <div className="mail-star-icon" v-html="getMailSvg(myStar)"></div>
             </section>
             <section @click="showDetails" >
                 <span :class="isRead">{{ mail.from }}</span> &emsp; 
@@ -26,8 +26,11 @@ export default {
     `,
     data() {
         return {
-            star: this.mail.isStared === true ? 'starFill' : 'star',
+            // star: '',
         }
+    },
+    created() {
+        // this.star = this.mail.isStared ? 'starFill' : 'star'
     },
     methods: {
         showDetails() {
@@ -39,6 +42,7 @@ export default {
             return svgService.getNoteSvg(iconName)
         },
         getMailSvg(iconName) {
+            // console.log('this.star', this.star)
             return svgService.getMailSvg(iconName)
         },
         deleteMail() {
@@ -48,7 +52,7 @@ export default {
         toggleStar() {
             this.mail.isStared = !this.mail.isStared
             mailService.updateMail(this.mail)
-            
+
             if (this.star === 'star') {
                 this.star = 'starFill'
                 return
@@ -58,6 +62,9 @@ export default {
         },
     },
     computed: {
+        myStar() {
+            return this.mail.isStared ? 'starFill' : 'star'
+        },
         isRead() {
             return this.mail.isRead ? 'read' : 'unread'
         },
@@ -67,10 +74,15 @@ export default {
             return month + ' ' + date
         }
     },
-    created() {
-    },
     mounted() {
     },
+    // watch: {
+    //     star() {
+    //         console.log('hi');
+
+    //         this.myStar
+    //     }
+    // },
     components: {
         svgService,
     },

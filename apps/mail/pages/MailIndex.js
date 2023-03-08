@@ -72,6 +72,7 @@ export default {
                     // this.showMail(this.list)
                     break
 
+
                 case 'isStar':
                     this.mails = mailService.filterByStar()
                     // this.showMail(this.list)
